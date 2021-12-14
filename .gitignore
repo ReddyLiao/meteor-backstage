@@ -1,0 +1,12 @@
+node_modules/
+.idea/*
+.idea/workspace.xml
+.vscode/typings/meteor.d.ts
+.vscode/launch.json
+.vscode/settings.json
+package-lock.json
+.ds_store
+.DS_STORE
+remote.bat
+production.json
+local.json
