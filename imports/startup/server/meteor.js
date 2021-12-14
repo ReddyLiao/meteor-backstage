@@ -22,10 +22,4 @@ Meteor.startup(function () {
         Log.debug('IP not allowed');
         return true;
     });
-
-    // process.env.NODE_OPTIONS = '--max_old_space_size=2867';
-    // process.env.MAIL_URL = Meteor.settings.private.MAIL_URL;
-    // process.env.ROOT_URL = Meteor.settings.private.ROOT_URL;
-    // process.env.SERVER_TYPE = Meteor.settings.private.SERVER_TYPE;
-    // process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 });

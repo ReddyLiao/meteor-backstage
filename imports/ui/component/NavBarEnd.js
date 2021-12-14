@@ -1,8 +1,9 @@
 import { Accounts } from 'meteor/accounts-base';
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, Fragment } from 'react';
 import { useHistory } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { RoutingContext } from '/imports/ui/route';
+import { Menu, Transition } from '@headlessui/react';
 
 const NavBarEnd = () => {
     const history = useHistory();
@@ -22,6 +23,9 @@ const NavBarEnd = () => {
         document.getElementById('password-modal').classList.toggle('is-active');
         document.getElementsByTagName('html')[0].classList.toggle('is-clipped');
     }
+    function classNames(...classes) {
+        return classes.filter(Boolean).join(' ');
+    }
 
     function handleSave() {
         if (password.oldPassword !== '' && password.newPassword !== '') {
@@ -31,7 +35,6 @@ const NavBarEnd = () => {
                         icon: 'error',
                         title: '錯誤',
                         text: error.reason,
-
                     }).then();
                     setPassword(password);
                 } else {
@@ -68,27 +71,59 @@ const NavBarEnd = () => {
     };
 
     return (
-        <div className="navbar-end px-1-r">
-            <div className="navbar-item has-dropdown is-hoverable">
-                <div className="navbar-link">{user?.profile?.name || ''}</div>
-                <div className="navbar-dropdown">
-                    <a className="navbarMenu navbar-item is-tab" onClick={showPasswordModal}>
-                        <div>
-                            <span className="icon is-medium">
-                                <i className="fa fa-passport" />
-                            </span>
-                            更改密碼
-                        </div>
-                    </a>
-                    <a className="navbarMenu navbar-item is-tab" onClick={logout}>
-                        <span className="icon is-medium">
-                            <i className="fa fa-sign-out" />
-                        </span>
-                        登出
-                    </a>
-                </div>
+        <Menu as="div" className="ml-3 relative">
+            <div>
+                <Menu.Button className="max-w-xs bg-white flex items-center text-sm rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <span className="sr-only">Open user menu</span>
+                    <div className="">{user?.profile?.name || ''}</div>
+                </Menu.Button>
             </div>
-            <div className="modal" id="password-modal">
+            <Transition
+                as={Fragment}
+                enter="transition ease-out duration-100"
+                enterFrom="transform opacity-0 scale-95"
+                enterTo="transform opacity-100 scale-100"
+                leave="transition ease-in duration-75"
+                leaveFrom="transform opacity-100 scale-100"
+                leaveTo="transform opacity-0 scale-95"
+            >
+                <Menu.Items
+                    className="origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg py-1 bg-white ring-1 ring-black ring-opacity-5 focus:outline-none"
+                    onClick={showPasswordModal}
+                >
+                    <Menu.Item>
+                        {({ active }) => (
+                            <a
+                                className={classNames(
+                                    active ? 'bg-gray-100' : '',
+                                    'block px-4 py-2 text-sm text-gray-700',
+                                )}
+                            >
+                                <span className="icon is-medium">
+                                    <i className="fa fa-passport" />
+                                </span>
+                                更改密碼
+                            </a>
+                        )}
+                    </Menu.Item>
+                    <Menu.Item onClick={logout}>
+                        {({ active }) => (
+                            <a
+                                className={classNames(
+                                    active ? 'bg-gray-100' : '',
+                                    'block px-4 py-2 text-sm text-gray-700',
+                                )}
+                            >
+                                <span className="icon is-medium">
+                                    <i className="fa fa-passport" />
+                                </span>
+                                登出
+                            </a>
+                        )}
+                    </Menu.Item>
+                </Menu.Items>
+            </Transition>
+            {/* <div className="modal" id="password-modal">
                 <div className="modal-background" />
                 <div className="modal-card">
                     <header className="modal-card-head">
@@ -155,8 +190,8 @@ const NavBarEnd = () => {
                         </button>
                     </footer>
                 </div>
-            </div>
-        </div>
+            </div> */}
+        </Menu>
     );
 };
 

@@ -10,74 +10,105 @@ const NavBarMenu = (props) => {
     const menus = props.menus;
     const menu = props.menu;
 
-    // 將User點到的地方反白
-    const menuID = menu && _.find(menus, { menu })?._id;
-    useEffect(() => {
-        [...document.getElementsByClassName('navbarMenu')].forEach((element) => {
-            element.classList.remove('is-active');
-        });
-        document.getElementById(menuID)?.classList?.add('is-active');
-    }, [menu]);
-
+    function classNames(...classes) {
+        return classes.filter(Boolean).join(' ');
+    }
     return (
-        <div id="nav-menu" className="navbar-menu has-background-grey-lighter">
-            <div className="navbar-start">
-                {menus.map((m) => {
-                    const { _id, url, name, icon, roles, subMenu, isShow } = m;
-
-                    if (subMenu) {
-                        return (
-                            <li id={_id} key={_id} className="navbar-item has-dropdown is-hoverable">
-                                <div className="navbar-link">{name}</div>
-                                <div className="navbar-dropdown">
-                                    {subMenu.map((s) => {
-                                        const { _id, url, name, icon, roles, isShow } = s;
-
-                                        return (
-                                            <a
-                                                key={_id}
-                                                id={_id}
-                                                className="navbarMenu navbar-item is-tab"
-                                                onClick={() => history.push(url)}
-                                            >
-                                                <div>
-                                                    <span className="icon is-medium">
-                                                        <i className={icon} />
-                                                    </span>
-                                                    {name}
-                                                </div>
-                                            </a>
-                                        );
-
-                                        return undefined;
-                                    })}
-                                </div>
-                            </li>
-                        );
-                    }
+        <div className="flex-1 flex">
+            {menus.map((m, index) => {
+                const { _id, url, name, icon, roles, subMenu, isShow, current } = m;
+                if (subMenu) {
                     return (
-                        <li
-                            key={_id}
+                        <div key={_id}>
+                            <div className="sm:hidden">
+                                <label htmlFor="tabs" className="sr-only">
+                                    Select a tab
+                                </label>
+                                <select
+                                    id="tabs"
+                                    name="tabs"
+                                    className="block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
+                                    defaultValue={subMenu.find((item) => item.current).name}
+                                >
+                                    {subMenu.map((item) => (
+                                        <option key={item._id}>{item.name}</option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className="hidden sm:block">
+                                <nav
+                                    className="relative z-0 rounded-lg shadow flex divide-x divide-gray-200"
+                                    aria-label="Tabs"
+                                >
+                                    {subMenu.map((item, index) => (
+                                        <a
+                                            key={item.name}
+                                            onClick={() => history.push(item.url)}
+                                            className={classNames(
+                                                item.current ? 'text-gray-900' : 'text-gray-500 hover:text-gray-700',
+                                                index === 0 ? 'rounded-l-lg' : '',
+                                                index === subMenu.length - 1 ? 'rounded-r-lg' : '',
+                                                'group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-sm font-medium text-center hover:bg-gray-50 focus:z-10',
+                                            )}
+                                            aria-current={item.current ? 'page' : undefined}
+                                        >
+                                            <span>
+                                                <i className={item.icon} />
+                                                {item.name}
+                                            </span>
+                                            <span
+                                                aria-hidden="true"
+                                                className={classNames(
+                                                    item.current ? 'bg-indigo-500' : 'bg-transparent',
+                                                    'absolute inset-x-0 bottom-0 h-0.5',
+                                                )}
+                                            />
+                                        </a>
+                                    ))}
+                                </nav>
+                            </div>
+                        </div>
+                    );
+                }
+                return (
+                    <nav
+                        key={_id}
+                        className="relative z-0 rounded-lg shadow flex divide-x divide-gray-200"
+                        aria-label="Tabs"
+                    >
+                        <a
                             id={_id}
-                            className="navbarMenu navbar-item is-tab "
+                            className={classNames(
+                                current ? 'text-gray-900' : 'text-gray-500 hover:text-gray-700',
+                                index === 0 ? 'rounded-l-lg' : '',
+                                index === menus.length - 1 ? 'rounded-r-lg' : '',
+                                'group relative min-w-0 flex-1 overflow-hidden bg-white py-4 px-4 text-sm font-medium text-center hover:bg-gray-50 focus:z-10',
+                            )}
                             onClick={() => history.push(url)}
                         >
-                            <i className={icon} />
-                            {name}
-                        </li>
-                    );
-
-                    return undefined;
-                })}
-            </div>
-            <NavBarEnd />
+                            <span>
+                                <i className={icon} />
+                                {name}
+                            </span>
+                            <span
+                                aria-hidden="true"
+                                className={classNames(
+                                    current ? 'bg-indigo-500' : 'bg-transparent',
+                                    'absolute inset-x-0 bottom-0 h-0.5',
+                                )}
+                            />
+                        </a>
+                    </nav>
+                );
+                return undefined;
+            })}
         </div>
     );
 };
 
 NavBarMenu.propTypes = {
-    menus: PropTypes.array.isRequired,
-    menu: PropTypes.string.isRequired,
+    // menus: PropTypes.array.isRequired,
+    // menu: PropTypes.string.isRequired,
 };
 
 export default NavBarMenu;

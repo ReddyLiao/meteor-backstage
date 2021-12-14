@@ -1,43 +1,8 @@
+import { CalendarIcon, ChartBarIcon, FolderIcon, HomeIcon, InboxIcon, UsersIcon } from '@heroicons/react/outline';
+
 const orderMenu = [];
 const produceMenu = [];
-const hrMenu = [
-    {
-        _id: 'hr010',
-        sort: '010',
-        name: '部門',
-        menu: 'department',
-        roles: ['admin'],
-        icon: 'fas icon fa-id-card',
-        url: '/hr/department',
-    },
-    {
-        _id: 'hr020',
-        sort: '020',
-        name: '員工',
-        menu: 'staff',
-        roles: ['admin'],
-        icon: 'fas icon fa-users',
-        url: '/hr/staff',
-    },
-    {
-        _id: 'hr030',
-        sort: '030',
-        name: '進出紀錄',
-        menu: 'attendance',
-        roles: ['admin'],
-        icon: 'fas icon fa-table',
-        url: '/hr/attendance',
-    },
-    {
-        _id: 'hr040',
-        sort: '040',
-        name: '考勤統計',
-        menu: 'statistics',
-        roles: ['admin'],
-        icon: 'fas icon fa-chart-bar',
-        url: '/hr/statistics',
-    },
-];
+const hrMenu = [];
 const baseMenu = [];
 const systemMenu = [
     {
@@ -48,6 +13,7 @@ const systemMenu = [
         roles: ['admin'],
         icon: 'fas icon fa-users',
         url: '/system/users',
+        current: false,
     },
     {
         _id: 'system020',
@@ -57,6 +23,7 @@ const systemMenu = [
         roles: ['admin'],
         icon: 'fas icon fa-id-card',
         url: '/system/role',
+        current: false,
     },
     {
         _id: 'system030',
@@ -66,6 +33,7 @@ const systemMenu = [
         roles: ['admin'],
         icon: 'fas icon fa-toggle-on',
         url: '/system/button',
+        current: false,
     },
     {
         _id: 'system040',
@@ -75,6 +43,7 @@ const systemMenu = [
         roles: ['admin'],
         icon: 'fas icon fa-bold',
         url: '/system/i18n',
+        current: false,
     },
     {
         _id: 'system970',
@@ -84,52 +53,65 @@ const systemMenu = [
         roles: ['admin'],
         icon: 'fas icon fa-th-list',
         url: '/system/category',
+        current: false,
     },
 ];
 
 const mainModules = [
     {
         _id: 'main010',
-        header: 'WO',
         sort: '010',
-        name: '中文工單',
-        menu: orderMenu,
-        icon: '',
+        menu: [],
+        name: 'Dashboard',
+        icon: HomeIcon,
+        current: true,
+        url: '/landing',
     },
     {
         _id: 'main020',
-        header: 'PI',
         sort: '020',
-        name: '生產資訊',
-        menu: produceMenu,
-        icon: '',
+        name: 'Users',
+        menu: systemMenu,
+        icon: UsersIcon,
+        current: false,
+        url: '/system/users',
     },
     {
         _id: 'main030',
-        header: 'HR',
         sort: '030',
-        name: '人事模組',
+        name: 'Projects',
         menu: hrMenu,
-        icon: '',
-        url: '/hr/main',
+        icon: FolderIcon,
+        current: false,
+        url: '/system/role',
     },
 
     {
-        _id: 'main910',
-        header: 'BS',
-        sort: '910',
-        name: '基礎資料',
+        _id: 'main040',
+        sort: '040',
+        name: 'Calendar',
         menu: baseMenu,
-        icon: '',
+        icon: CalendarIcon,
+        current: false,
+        url: '/system/button',
     },
     {
-        _id: 'main920',
-        header: 'SM',
-        sort: '920',
-        name: '系統設定',
+        _id: 'main050',
+        sort: '050',
+        name: 'Documents',
         menu: systemMenu,
-        icon: '',
-        url: '/system/main',
+        icon: InboxIcon,
+        current: false,
+        url: '',
+    },
+    {
+        _id: 'main060',
+        sort: '060',
+        name: 'Reports',
+        menu: produceMenu,
+        icon: ChartBarIcon,
+        current: false,
+        url: '',
     },
 ];
 
