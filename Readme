@@ -1,0 +1,7 @@
+meteor npm install
+
+tester may not login first time
+
+
+GET /publications/<publication-name>
+http://localhost:3000/publications/api-routes
