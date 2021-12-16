@@ -5,7 +5,7 @@ import NavBarMenu from './NavBarMenu';
 import NavBarEnd from './NavBarEnd';
 
 const NavBar = (props) => (
-    <nav className="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white shadow">
+    <div className="sticky top-0 z-10 flex-shrink-0 flex h-16 bg-white shadow">
         {/* <NavBarBrand /> */}
         <button
             type="button"
@@ -16,7 +16,9 @@ const NavBar = (props) => (
             <MenuAlt2Icon className="h-6 w-6" aria-hidden="true" />
         </button>
         <div className="flex-1 px-4 flex justify-between">
-            <NavBarMenu menus={props.menus} menu={props.menu} />
+            <div className="flex-1 flex">
+                <NavBarMenu menus={props.menus} menu={props.menu} />
+            </div>
             <div className="ml-4 flex items-center md:ml-6">
                 <button
                     type="button"
@@ -28,7 +30,7 @@ const NavBar = (props) => (
                 <NavBarEnd />
             </div>
         </div>
-    </nav>
+    </div>
 );
 
 NavBar.propTypes = {

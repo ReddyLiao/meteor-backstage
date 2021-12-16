@@ -4,19 +4,16 @@ import { useHistory } from 'react-router-dom';
 import { Meteor } from 'meteor/meteor';
 import { mainModules } from '/imports/fixture/menu';
 import { useTracker } from 'meteor/react-meteor-data';
-import { BellIcon, MenuAlt2Icon, XIcon } from '@heroicons/react/outline';
+import { XIcon } from '@heroicons/react/outline';
 import { useParams } from 'react-router-dom';
-import NavBar from '/imports/ui/component/NavBar';
-import { systemMenu } from '/imports/fixture/menu';
 
-const Landing = () => {
+const Dashboard = (props) => {
     const user = useTracker(() => Meteor.user());
     const history = useHistory();
     const showModules = [];
 
     showModules.push(mainModules);
 
-    const [sidebarOpen, setSidebarOpen] = useState(false);
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ');
     }
@@ -24,8 +21,8 @@ const Landing = () => {
 
     return (
         <div>
-            <Transition.Root show={sidebarOpen} as={Fragment}>
-                <Dialog as="div" className="fixed inset-0 flex z-40 md:hidden" onClose={setSidebarOpen}>
+            <Transition.Root show={props.sidebarOpen} as={Fragment}>
+                <Dialog as="div" className="fixed inset-0 flex z-40 md:hidden" onClose={props.setSidebarOpen}>
                     <Transition.Child
                         as={Fragment}
                         enter="transition-opacity ease-linear duration-300"
@@ -60,7 +57,7 @@ const Landing = () => {
                                     <button
                                         type="button"
                                         className="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-                                        onClick={() => setSidebarOpen(false)}
+                                        onClick={() => props.setSidebarOpen(false)}
                                     >
                                         <span className="sr-only">Close sidebar</span>
                                         <XIcon className="h-6 w-6 text-white" aria-hidden="true" />
@@ -171,32 +168,8 @@ const Landing = () => {
                     </div>
                 </div>
             </div>
-            <div className="md:pl-64 flex flex-col">
-                <NavBar menus={systemMenu} menu={menu} setSidebarOpen={setSidebarOpen} />
-                <main className="flex-1">
-                    <div>
-                        {(menu === 'users' && <Users />) || undefined}
-                        {(menu === 'role' && <Role />) || undefined}
-                        {(menu === 'button' && <Button />) || undefined}
-                    </div>
-                </main>
-                {/* <main className="flex-1">
-            <div className="py-6">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-                <h1 className="text-2xl font-semibold text-gray-900">Dashboard</h1>
-              </div>
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
-                Replace with your content
-                <div className="py-4">
-                  <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" />
-                </div>
-                /End replace
-              </div>
-            </div>
-          </main> */}
-            </div>
         </div>
     );
 };
 
-export default Landing;
+export default Dashboard;

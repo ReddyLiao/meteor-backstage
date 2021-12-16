@@ -31,7 +31,7 @@ const LoginForm = () => {
                 Accounts._autoLoginEnabled = false;
                 Accounts._unstoreLoginToken();
                 account.error = '';
-                history.push('/landing');
+                history.push('/users');
             }
         });
     };

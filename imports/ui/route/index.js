@@ -6,8 +6,11 @@ import { useTracker } from 'meteor/react-meteor-data';
 import BlockUi from '/imports/ui/component/BlockUI';
 import '/imports/ui/component/BlockUI/style.css';
 import Login from '/imports/ui/component/Login';
-import Landing from '/imports/ui/component/Landing';
+// import Landing from '/imports/ui/component/Landing';
 import System from '/imports/ui/system';
+import Users from '/imports/ui/users';
+import User1 from '/imports/ui/system/user';
+import User2 from '/imports/ui/users/user';
 
 import NotFound from '/imports/ui/component/NotFound';
 
@@ -18,7 +21,6 @@ const useAccount = () =>
         return {
             user,
             userId,
-
             isLoggedIn: !!userId,
         };
     }, []);
@@ -54,8 +56,10 @@ const Index = () => (
             <Route exact path={['/', '/login']}>
                 <Login />
             </Route>
-            <ProtectedRoute exact path="/landing" comp={Landing} />
-            <ProtectedRoute exact path="/system/:menu" comp={System} />
+            <ProtectedRoute path="/system" comp={System} />
+            <ProtectedRoute path="/users" comp={Users} />
+            <ProtectedRoute exact path="/system/:menu" comp={User1} />
+            <ProtectedRoute exact path="/users/:menu" comp={User2} />
             <Route>
                 <NotFound />
             </Route>
