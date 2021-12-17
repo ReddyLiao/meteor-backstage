@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 const NavBarBrand = () => {
     const history = useHistory();
     function handleClick() {
-        history.push('/users');
+        history.push('/users/user');
     }
 
     const handleCssNavToggle = () => {

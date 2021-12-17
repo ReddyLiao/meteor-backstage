@@ -56,10 +56,8 @@ const Index = () => (
             <Route exact path={['/', '/login']}>
                 <Login />
             </Route>
-            <ProtectedRoute path="/system" comp={System} />
-            <ProtectedRoute path="/users" comp={Users} />
-            <ProtectedRoute exact path="/system/:menu" comp={User1} />
-            <ProtectedRoute exact path="/users/:menu" comp={User2} />
+            <ProtectedRoute path="/system/:menu" comp={System} />
+            <ProtectedRoute path="/users/:menu" comp={Users} />
             <Route>
                 <NotFound />
             </Route>

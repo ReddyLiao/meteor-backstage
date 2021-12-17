@@ -5,10 +5,10 @@ const usersMenu = [
         _id: 'users010',
         sort: '010',
         name: '帳號',
-        menu: 'users',
+        menu: 'user',
         roles: ['admin'],
         icon: 'fas icon fa-users',
-        url: '/users/users',
+        url: '/users/user',
         current: false,
     },
     {
@@ -73,7 +73,7 @@ const mainModules = [
         menu: systemMenu,
         icon: UsersIcon,
         current: false,
-        url: '/users',
+        url: '/users/user',
     },
     {
         _id: 'main020',
@@ -82,7 +82,7 @@ const mainModules = [
         menu: usersMenu,
         icon: CogIcon,
         current: false,
-        url: '/system',
+        url: '/system/main',
     },
 
     // {

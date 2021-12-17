@@ -38,20 +38,32 @@ const ListItem = (props) => {
     }
 
     return (
-        <tr className={item._id}>
-            <td className="has-text-centered is-narrow">
+        <tr>
+            <td className="px-6 py-4 whitespace-nowrap">
                 <i className="icon fas fa-pencil" onClick={() => handleUpdate()} />
                 <i className="icon fas fa-trash" onClick={() => handleRemove()} />
             </td>
-            <td>{item.username}</td>
-            <td>{item?.profile?.name}</td>
-            <td className={item?.status?.online ? 'has-text-success' : ''}>
-                {item && item.emails && item.emails[0] && item.emails[0]?.address}
+            <td className="px-6 py-4 whitespace-nowrap">{item.username}</td>
+            <td className="px-6 py-4 whitespace-nowrap">{item?.profile?.name}</td>
+            <td className="px-6 py-4 whitespace-nowrap">
+                {item?.status?.online ? (
+                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                        {item && item.emails && item.emails[0] && item.emails[0]?.address}
+                    </span>
+                ) : (
+                    <span>{item && item.emails && item.emails[0] && item.emails[0]?.address}</span>
+                )}
             </td>
-            <td>{item?.profile?.phone}</td>
-            <td>{item?.profile?.roles?.join(',')}</td>
-            <td className={item?.status?.online ? 'has-text-success' : ''}>
-                {item?.status?.online ? 'Online' : 'Offline' ?? ''}
+            <td className="px-6 py-4 whitespace-nowrap">{item?.profile?.phone}</td>
+            <td className="px-6 py-4 whitespace-nowrap">{item?.profile?.roles?.join(',')}</td>
+            <td className="px-6 py-4 whitespace-nowrap">
+                {item?.status?.online ? (
+                    <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                        {item?.status?.online ? 'Online' : 'Offline' ?? ''}
+                    </span>
+                ) : (
+                    <span> {item?.status?.online ? 'Online' : 'Offline' ?? ''}</span>
+                )}
             </td>
         </tr>
     );
