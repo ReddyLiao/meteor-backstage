@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ChevronLeftIcon, ChevronRightIcon } from '@heroicons/react/solid';
 
-export const Page = ({ currentPage, index, onChange, className }) => (
+export const Page = ({ currentPage, index, onChange }) => (
     <a
         className={`bg-white  text-gray-500 hover:bg-gray-50 relative inline-flex items-center px-4 py-2 text-sm font-medium ${
             (currentPage === index || (index === 1 && !currentPage)) &&
@@ -79,7 +79,6 @@ const Pagination = ({ pages, currentPage, visibleRadius, onChange, onPerPageChan
         }
     }
 
-    // eslint-disable-next-line max-len
     visiblePages.map((page) =>
         pagesComponents.push(
             <Page
@@ -107,18 +106,18 @@ const Pagination = ({ pages, currentPage, visibleRadius, onChange, onPerPageChan
             <div className="flex-1 flex justify-between sm:hidden">
                 <a
                     href="#"
-                    className="relative inline-flex items-center px-4 py-2 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                    className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
                 >
                     Previous
                 </a>
                 <a
                     href="#"
-                    className="ml-3 relative inline-flex items-center px-4 py-2 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                    className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
                 >
                     Next
                 </a>
             </div>
-            <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+            <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-center">
                 <nav
                     className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px"
                     role="navigation"
@@ -170,29 +169,13 @@ Pagination.propTypes = {
     pages: PropTypes.number.isRequired,
     currentPage: PropTypes.number,
     visibleRadius: PropTypes.number,
-    className: PropTypes.string,
-    prevName: PropTypes.string,
-    nextName: PropTypes.string,
-    prevClassName: PropTypes.string,
-    nextClassName: PropTypes.string,
-
-    listClassName: PropTypes.string,
     onChange: PropTypes.func.isRequired,
     onPerPageChange: PropTypes.func.isRequired,
-    isRounded: PropTypes.bool,
-    isSmall: PropTypes.bool,
-    isMedium: PropTypes.bool,
-    isLarge: PropTypes.bool,
-    isCentered: PropTypes.bool,
-    isRight: PropTypes.bool,
 };
 
 Pagination.defaultProps = {
     currentPage: 1,
     visibleRadius: 1,
-    className: '',
-    prevName: '<<',
-    nextName: '>>',
 };
 
 export default Pagination;

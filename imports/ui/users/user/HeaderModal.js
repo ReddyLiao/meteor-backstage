@@ -76,7 +76,7 @@ const Modal = (props) => {
             Swal.fire({
                 icon: 'error',
                 title: '錯誤',
-                text: '請輸入帳號/姓名/密碼/角色/授權IP等資料',
+                text: '請輸入帳號/姓名/密碼/角色/等資料',
                 showClass: {
                     popup: 'animated fadeInDown faster',
                 },
@@ -326,13 +326,13 @@ const Modal = (props) => {
                             </div>
                             <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                                 <button
-                                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    className="mx-2 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                     onClick={() => handleSave()}
                                 >
                                     存檔
                                 </button>
                                 <button
-                                    className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    className="bg-white mx-2 py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                                     data-bulma-modal="close"
                                     onClick={() => handleClose()}
                                 >

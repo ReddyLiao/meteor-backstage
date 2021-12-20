@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { Fragment, useRef, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Meteor } from 'meteor/meteor';
 import Swal from 'sweetalert2';
@@ -11,6 +11,8 @@ import HandleFieldChange from '/imports/ui/component/HandleFieldChange';
 import MenuTree from '/imports/ui/component/MenuTree';
 import Role from '/imports/api/role/collection';
 import { buttonOptions } from '/imports/fixture/button';
+
+import { Dialog, Transition } from '@headlessui/react';
 
 const INITIAL_STATE = {
     username: '',
@@ -30,6 +32,7 @@ const INITIAL_STATE = {
 
 const ListModal = (props) => {
     const { handleChange, handleAdd, handleRemove, resetValues, values } = HandleFieldChange(INITIAL_STATE);
+    const cancelButtonRef = useRef(null);
 
     let roleOptions = [];
     useTracker(() => {
@@ -62,8 +65,7 @@ const ListModal = (props) => {
         Session.set('grantedMenuIDs', []);
         Session.set('expandedMenuIDs', []);
         resetValues(values);
-        document.getElementById('update-users-modal').classList.remove('is-active');
-        document.getElementsByTagName('html')[0].classList.remove('is-clipped');
+        props.setOpen(false);
     }
 
     function handleSave() {
@@ -95,7 +97,7 @@ const ListModal = (props) => {
             Swal.fire({
                 icon: 'error',
                 title: '錯誤',
-                text: '請輸入帳號/姓名/角色/授權IP等資料',
+                text: '請輸入帳號/姓名/角色等資料',
                 showClass: {
                     popup: 'animated fadeInDown faster',
                 },
@@ -107,305 +109,260 @@ const ListModal = (props) => {
     }
 
     return (
-        <div className="modal modal-pos-top modal-fx-fadeInScale" id="update-users-modal">
-            <div className="modal-background" onClick={() => handleClose()} />
-            <div className="modal-card modal-width-960">
-                <header className="modal-card-head has-background-primary">
-                    <p className="modal-card-title">編輯帳號</p>
-                </header>
-                <section className="modal-card-body has-text-black">
-                    <div className="box is-bordered">
-                        <div className="field is-horizontal">
-                            <div className="field-label is-normal">
-                                <label className="label">帳號 *</label>
-                            </div>
-                            <div className="field-body">
-                                <div className="field">
-                                    <div className="control is-expanded has-icons-left">
-                                        <input
-                                            className="input has-text-grey"
-                                            readOnly="readOnly"
-                                            value={values.username}
-                                        />
-                                        <span className="icon is-small is-left">
-                                            <i className="fa fa-address-card" />
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="field is-horizontal">
-                            <div className="field-label is-normal">
-                                <label className="label">姓名 *</label>
-                            </div>
-                            <div className="field-body">
-                                <div className="field">
-                                    <div className="control is-expanded has-icons-left ">
-                                        <input
-                                            className="input"
-                                            type="text"
-                                            name="name"
-                                            placeholder="請輸入姓名"
-                                            required
-                                            value={values.name}
-                                            onChange={handleChange}
-                                        />
-                                        <span className="icon is-small is-left">
-                                            <i className="fa fa-address-card" />
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+        <Transition.Root show={props.open} as={Fragment}>
+            <Dialog
+                as="div"
+                className="fixed z-10 inset-0 overflow-y-auto"
+                initialFocus={cancelButtonRef}
+                onClose={props.setOpen}
+            >
+                <div className="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                    <Transition.Child
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100"
+                        leaveTo="opacity-0"
+                    >
+                        <Dialog.Overlay className="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" />
+                    </Transition.Child>
+                    {/* This element is to trick the browser into centering the modal contents. */}
+                    <span className="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">
+                        &#8203;
+                    </span>
+                    <Transition.Child
+                        as={Fragment}
+                        enter="ease-out duration-300"
+                        enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                        enterTo="opacity-100 translate-y-0 sm:scale-100"
+                        leave="ease-in duration-200"
+                        leaveFrom="opacity-100 translate-y-0 sm:scale-100"
+                        leaveTo="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
+                    >
+                        <div className="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                            <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                                <div className="sm:flex sm:items-start">
+                                    <div className="px-4 py-5 bg-white sm:p-6">
+                                        <h3 className="text-lg font-medium leading-6 text-gray-900">編輯帳號</h3>
 
-                        <div className="field is-horizontal">
-                            <div className="field-label is-normal">
-                                <label className="label">EMail</label>
-                            </div>
-                            <div className="field-body">
-                                <div className="field">
-                                    <div className="control is-expanded has-icons-left ">
-                                        <input
-                                            className="input"
-                                            type="text"
-                                            name="email"
-                                            placeholder="請輸入EMail"
-                                            required
-                                            value={values.email}
-                                            onChange={handleChange}
-                                        />
-                                        <span className="icon is-small is-left">
-                                            <i className="fa fa-mailbox" />
-                                        </span>
+                                        <div className="grid grid-cols-6 gap-6">
+                                            <div className="col-span-6 sm:col-span-3">
+                                                <label className="block text-sm font-medium text-gray-700">
+                                                    帳號 *
+                                                </label>
+                                                <input
+                                                    className="mt-1 bg-gray-100  block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                    readOnly="readOnly"
+                                                    type="text"
+                                                    value={values.username}
+                                                />
+                                                <span className="icon is-small is-left">
+                                                    <i className="fa fa-address-card" />
+                                                </span>
+                                            </div>
+                                            <div className="col-span-6 sm:col-span-3">
+                                                <label className="block text-sm font-medium text-gray-700">
+                                                    姓名 *
+                                                </label>
+                                                <input
+                                                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                    type="text"
+                                                    name="name"
+                                                    placeholder="請輸入姓名"
+                                                    required
+                                                    value={values.name}
+                                                    onChange={handleChange}
+                                                />
+                                                <span className="icon is-small is-left">
+                                                    <i className="fa fa-address-card" />
+                                                </span>
+                                            </div>
+                                            <div className="col-span-6 sm:col-span-4">
+                                                <label
+                                                    htmlFor="email-address"
+                                                    className="block text-sm font-medium text-gray-700"
+                                                >
+                                                    EMail
+                                                </label>
+                                                <input
+                                                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                    type="text"
+                                                    name="email"
+                                                    placeholder="請輸入EMail"
+                                                    required
+                                                    value={values.email}
+                                                    onChange={handleChange}
+                                                />
+                                                <span className="icon is-small is-left">
+                                                    <i className="fa fa-mailbox" />
+                                                </span>
+                                            </div>
+                                            <div className="col-span-6 sm:col-span-3">
+                                                <label className="block text-sm font-medium text-gray-700">密碼 </label>
+                                                <input
+                                                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                    type="text"
+                                                    name="password"
+                                                    placeholder="需要更改時才輸入"
+                                                    required
+                                                    value={values.password}
+                                                    onChange={handleChange}
+                                                />
+                                                <span className="icon is-small is-left">
+                                                    <i className="fa fa-passport" />
+                                                </span>
+                                            </div>
+                                            <div className="col-span-6 sm:col-span-3">
+                                                <label className="block text-sm font-medium text-gray-700">手機 </label>
+                                                <input
+                                                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                    type="text"
+                                                    name="phone"
+                                                    placeholder="請輸入手機號碼"
+                                                    required
+                                                    value={values.phone}
+                                                    onChange={handleChange}
+                                                />
+                                                <span className="icon is-small is-left">
+                                                    <i className="fa fa-phone" />
+                                                </span>
+                                            </div>
+                                            <div className="col-span-6 sm:col-span-3">
+                                                <label className="block text-sm font-medium text-gray-700">
+                                                    角色 *
+                                                </label>
+
+                                                <div>
+                                                    <div>
+                                                        <select
+                                                            className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                            name="addRole"
+                                                            value={values.addRole}
+                                                            onChange={handleChange}
+                                                        >
+                                                            <option value="">請選擇</option>
+                                                            {roleOptions.map((c) => (
+                                                                <option key={c.value} value={c.value}>
+                                                                    {c.label}
+                                                                </option>
+                                                            ))}
+                                                        </select>
+
+                                                        <button
+                                                            className="text-blue-600 hover:text-indigo-900"
+                                                            onClick={() => handleAdd('addRole', 'roles')}
+                                                        >
+                                                            增加
+                                                        </button>
+                                                    </div>
+                                                    <table className="min-w-full divide-y divide-gray-200">
+                                                        <tbody id="tbodyEditUsersRoles">
+                                                            {values.roles &&
+                                                                values?.roles?.map((role, i) => (
+                                                                    <tr key={Random.id()}>
+                                                                        <td>{role}</td>
+                                                                        <td>
+                                                                            <button
+                                                                                className="button is-danger is-small"
+                                                                                onClick={() => handleRemove('roles', i)}
+                                                                            >
+                                                                                刪除
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                ))}
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+                                            <div className="col-span-6 sm:col-span-3">
+                                                <label className="block text-sm font-medium text-gray-700">
+                                                    授權按鈕
+                                                </label>
+
+                                                <div>
+                                                    <div>
+                                                        <select
+                                                            className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                                            name="addGrantedButton"
+                                                            value={values.addGrantedButton}
+                                                            onChange={handleChange}
+                                                        >
+                                                            <option value="">請選擇</option>
+                                                            <option value="all">全部</option>
+                                                            {buttonOptions.map((c) => (
+                                                                <option key={c.value} value={c.value}>
+                                                                    {c.label}
+                                                                </option>
+                                                            ))}
+                                                        </select>
+                                                        <button
+                                                            className="text-blue-600 hover:text-indigo-900"
+                                                            onClick={() =>
+                                                                handleAdd('addGrantedButton', 'grantedButtons')
+                                                            }
+                                                        >
+                                                            增加
+                                                        </button>
+                                                    </div>
+                                                    {values?.grantedButtons?.length > 0 ? (
+                                                        <table className="min-w-full divide-y divide-gray-200">
+                                                            <tbody id="tbodyEditUsersGrantedButtons">
+                                                                {values.grantedButtons.map((button, i) => (
+                                                                    <tr key={Random.id()}>
+                                                                        <td>
+                                                                            {button === 'all'
+                                                                                ? 'all'
+                                                                                : _.find(buttonOptions, [
+                                                                                      'value',
+                                                                                      button,
+                                                                                  ]).label}
+                                                                        </td>
+                                                                        <td>
+                                                                            <button
+                                                                                className="text-gray-600 hover:text-indigo-900"
+                                                                                onClick={() =>
+                                                                                    handleRemove('grantedButtons', i)
+                                                                                }
+                                                                            >
+                                                                                刪除
+                                                                            </button>
+                                                                        </td>
+                                                                    </tr>
+                                                                ))}
+                                                            </tbody>
+                                                        </table>
+                                                    ) : undefined}
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div className="field is-horizontal">
-                            <div className="field-label is-normal">
-                                <label className="label">密碼 </label>
-                            </div>
-                            <div className="field-body">
-                                <div className="field">
-                                    <div className="control is-expanded has-icons-left ">
-                                        <input
-                                            className="input"
-                                            type="text"
-                                            name="password"
-                                            placeholder="需要更改時才輸入"
-                                            required
-                                            value={values.password}
-                                            onChange={handleChange}
-                                        />
-                                        <span className="icon is-small is-left">
-                                            <i className="fa fa-passport" />
-                                        </span>
-                                    </div>
-                                </div>
+
+                            <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                                <button
+                                    className="mx-2 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    onClick={() => handleSave()}
+                                >
+                                    存檔
+                                </button>
+                                <button
+                                    className="bg-white mx-2 py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                    data-bulma-modal="close"
+                                    onClick={() => handleClose()}
+                                >
+                                    離開
+                                </button>
                             </div>
                         </div>
-                        <div className="field is-horizontal">
-                            <div className="field-label is-normal">
-                                <label className="label">手機 </label>
-                            </div>
-                            <div className="field-body">
-                                <div className="field">
-                                    <div className="control is-expanded has-icons-left ">
-                                        <input
-                                            className="input"
-                                            type="text"
-                                            name="phone"
-                                            placeholder="請輸入手機號碼"
-                                            required
-                                            value={values.phone}
-                                            onChange={handleChange}
-                                        />
-                                        <span className="icon is-small is-left">
-                                            <i className="fa fa-phone" />
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="box is-bordered">
-                        <div className="field is-horizontal">
-                            <div className="field-label is-normal">
-                                <label className="label">角色 *</label>
-                            </div>
-                            <div className="field-body">
-                                <div className="field has-addons">
-                                    <p className="control">
-                                        <span className="select">
-                                            <select name="addRole" value={values.addRole} onChange={handleChange}>
-                                                <option value="">請選擇</option>
-                                                {roleOptions.map((c) => (
-                                                    <option key={c.value} value={c.value}>
-                                                        {c.label}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </span>
-                                    </p>
-                                    <p className="control">
-                                        <button
-                                            className="button is-primary"
-                                            onClick={() => handleAdd('addRole', 'roles')}
-                                        >
-                                            增加
-                                        </button>
-                                    </p>
-                                </div>
-                                <table className="table is-bordered is-striped">
-                                    <tbody id="tbodyEditUsersRoles">
-                                        {values.roles &&
-                                            values?.roles?.map((role, i) => (
-                                                <tr key={Random.id()}>
-                                                    <td>{role}</td>
-                                                    <td>
-                                                        <button
-                                                            className="button is-danger is-small"
-                                                            onClick={() => handleRemove('roles', i)}
-                                                        >
-                                                            刪除
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            ))}
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="box is-bordered">
-                        <div className="field is-horizontal">
-                            <div className="field-label is-normal">
-                                <label className="label">授權按鈕</label>
-                            </div>
-                            <div className="field-body">
-                                <div className="field has-addons">
-                                    <p className="control">
-                                        <span className="select">
-                                            <select
-                                                name="addGrantedButton"
-                                                value={values.addGrantedButton}
-                                                onChange={handleChange}
-                                            >
-                                                <option value="">請選擇</option>
-                                                <option value="all">全部</option>
-                                                {buttonOptions.map((c) => (
-                                                    <option key={c.value} value={c.value}>
-                                                        {c.label}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                        </span>
-                                    </p>
-                                    <p className="control">
-                                        <button
-                                            className="button is-primary"
-                                            onClick={() => handleAdd('addGrantedButton', 'grantedButtons')}
-                                        >
-                                            增加
-                                        </button>
-                                    </p>
-                                </div>
-                                {values?.grantedButtons?.length > 0 ? (
-                                    <table className="table is-bordered is-striped ">
-                                        <tbody id="tbodyEditUsersGrantedButtons">
-                                            {values.grantedButtons.map((button, i) => (
-                                                <tr key={Random.id()}>
-                                                    <td>
-                                                        {button === 'all'
-                                                            ? 'all'
-                                                            : _.find(buttonOptions, ['value', button]).label}
-                                                    </td>
-                                                    <td>
-                                                        <button
-                                                            className="button is-danger is-small"
-                                                            onClick={() => handleRemove('grantedButtons', i)}
-                                                        >
-                                                            刪除
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                ) : undefined}
-                            </div>
-                        </div>
-                    </div>
-                    <div className="box is-bordered">
-                        <div className="field is-horizontal">
-                            <div className="field-label is-normal">
-                                <label className="label">授權功能</label>
-                            </div>
-                            <div className="field-body">
-                                <MenuTree />
-                            </div>
-                        </div>
-                    </div>
-                    <div className="box is-bordered">
-                        <div className="field is-horizontal">
-                            <div className="field-label is-normal">
-                                <label className="label">授權IP</label>
-                            </div>
-                            <div className="field-body">
-                                <div className="field has-addons">
-                                    <p className="control">
-                                        <input
-                                            className="input"
-                                            type="text"
-                                            name="addGrantedIP"
-                                            placeholder="IP"
-                                            required
-                                            value={values.addGrantedIP}
-                                            onChange={handleChange}
-                                        />
-                                    </p>
-                                    <p className="control">
-                                        <button
-                                            className="button is-primary"
-                                            onClick={() => handleAdd('addGrantedIP', 'grantedIPs')}
-                                        >
-                                            增加
-                                        </button>
-                                    </p>
-                                </div>
-                                {values?.grantedIPs?.length > 0 ? (
-                                    <table className="table is-bordered is-striped ">
-                                        <tbody id="tbodyEditUsersGrantedIPs">
-                                            {values.grantedIPs.map((ip, i) => (
-                                                <tr key={Random.id()}>
-                                                    <td>{ip}</td>
-                                                    <td>
-                                                        <button
-                                                            className="button is-danger is-small"
-                                                            onClick={() => handleRemove('grantedIPs', i)}
-                                                        >
-                                                            刪除
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            ))}
-                                        </tbody>
-                                    </table>
-                                ) : undefined}
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <footer className="modal-card-foot block buttons-container">
-                    <button className="button is-success is-highlighted" onClick={() => handleSave()}>
-                        存檔
-                    </button>
-                    <button className="button is-info" data-bulma-modal="close" onClick={() => handleClose()}>
-                        離開
-                    </button>
-                </footer>
-            </div>
-        </div>
+                    </Transition.Child>
+                </div>
+            </Dialog>
+        </Transition.Root>
     );
 };
 

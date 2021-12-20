@@ -4,14 +4,15 @@ import Swal from 'sweetalert2';
 import { Meteor } from 'meteor/meteor';
 import { Random } from 'meteor/random';
 
+import { PencilAltIcon, TrashIcon } from '@heroicons/react/outline';
+
 const ListItem = (props) => {
     const item = props.item;
 
     function handleUpdate() {
         item.randomID = Random.id();
         props.setEditItem(item);
-        document.getElementById('update-users-modal').classList.add('is-active');
-        document.getElementsByTagName('html')[0].classList.add('is-clipped');
+        props.setOpen(true);
     }
 
     function handleRemove() {
@@ -40,8 +41,8 @@ const ListItem = (props) => {
     return (
         <tr>
             <td className="px-6 py-4 whitespace-nowrap">
-                <i className="icon fas fa-pencil" onClick={() => handleUpdate()} />
-                <i className="icon fas fa-trash" onClick={() => handleRemove()} />
+                <PencilAltIcon className="h-6 w-6 text-gray-600" onClick={() => handleUpdate()} />
+                <TrashIcon className="h-6 w-6 text-gray-600" onClick={() => handleRemove()} />
             </td>
             <td className="px-6 py-4 whitespace-nowrap">{item.username}</td>
             <td className="px-6 py-4 whitespace-nowrap">{item?.profile?.name}</td>
