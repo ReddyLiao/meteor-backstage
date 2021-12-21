@@ -5,3 +5,5 @@ tester may not login first time
 
 GET /publications/<publication-name>
 http://localhost:3000/publications/api-routes
+
+https://meteor-rest.readthedocs.io/en/latest/packages/rest-accounts-password/README/
