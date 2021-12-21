@@ -21,16 +21,16 @@ const usersMenu = [
         url: '/users/role',
         current: false,
     },
-    {
-        _id: 'users030',
-        sort: '030',
-        name: '按鈕',
-        menu: 'button',
-        roles: ['admin'],
-        icon: 'fas icon fa-toggle-on',
-        url: '/users/button',
-        current: false,
-    },
+    // {
+    //     _id: 'users030',
+    //     sort: '030',
+    //     name: '按鈕',
+    //     menu: 'button',
+    //     roles: ['admin'],
+    //     icon: 'fas icon fa-toggle-on',
+    //     url: '/users/button',
+    //     current: false,
+    // },
 ];
 const systemMenu = [
     {
@@ -43,26 +43,26 @@ const systemMenu = [
         url: '/system/category',
         current: false,
     },
-    {
-        _id: 'system020',
-        sort: '020',
-        name: '頁面2',
-        menu: 'users',
-        roles: ['admin'],
-        icon: 'fas icon fa-users',
-        url: '/system/user',
-        current: false,
-    },
-    {
-        _id: 'system030',
-        sort: '030',
-        name: '頁面3',
-        menu: 'button',
-        roles: ['admin'],
-        icon: 'fas icon fa-toggle-on',
-        url: '/system/button',
-        current: false,
-    },
+    // {
+    //     _id: 'system020',
+    //     sort: '020',
+    //     name: '頁面2',
+    //     menu: 'users',
+    //     roles: ['admin'],
+    //     icon: 'fas icon fa-users',
+    //     url: '/system/user',
+    //     current: false,
+    // },
+    // {
+    //     _id: 'system030',
+    //     sort: '030',
+    //     name: '頁面3',
+    //     menu: 'button',
+    //     roles: ['admin'],
+    //     icon: 'fas icon fa-toggle-on',
+    //     url: '/system/button',
+    //     current: false,
+    // },
 ];
 
 const mainModules = [
