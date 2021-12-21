@@ -7,15 +7,12 @@ if (Meteor.isServer) {
         if (this.userId) {
             return Meteor.roleAssignment.find({ 'user._id': this.userId });
         }
+
         this.ready();
     });
 
-    Meteor.publish("role", function () {
+    Meteor.publish(null, function () {
         return Role.find({}, { fields: { grantedMenus: 1, name: 1, cname: 1 } });
-    });
-
-    Meteor.publish('user/listAll', function () {
-        return Meteor.users.find({});
     });
 
     Meteor.publish('getRoleByFindValues', function (findValues) {

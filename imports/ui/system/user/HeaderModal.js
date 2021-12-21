@@ -54,6 +54,7 @@ const Modal = () => {
             values?.roles.length > 0 &&
             values?.grantedIPs.length > 0
         ) {
+            console.log(values);
             Meteor.call('users.insert', values, (error) => {
                 if (error) {
                     Swal.fire({

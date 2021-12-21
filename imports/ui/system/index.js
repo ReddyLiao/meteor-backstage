@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import Dashboard from '/imports/ui/component/Dashboard';
 import NavBar from '/imports/ui/component/NavBar';
 import Button from './button';
-import Role from './role';
+import Category from './category';
 import User from './user';
 import { systemMenu } from '/imports/fixture/menu';
 
@@ -18,7 +18,7 @@ const Index = (props) => {
                 <main className="flex-1">
                     <NavBar menus={systemMenu} menu={menu} setSidebarOpen={setSidebarOpen} />
                     {(menu === 'button' && <Button />) || undefined}
-                    {(menu === 'role' && <Role />) || undefined}
+                    {(menu === 'category' && <Category />) || undefined}
                     {(menu === 'user' && <User />) || undefined}
                 </main>
             </div>

@@ -21,10 +21,8 @@ const INITIAL_STATE = {
     roles: [],
     grantedMenus: [],
     grantedButtons: [],
-    grantedIPs: [],
     addRole: '',
     addGrantedButton: '',
-    addGrantedIP: '',
     error: '',
 };
 
@@ -48,13 +46,7 @@ const Modal = (props) => {
 
     function handleSave() {
         values.grantedMenuIDs = Session.get('grantedMenuIDs');
-        if (
-            values.name !== '' &&
-            values.username !== '' &&
-            values.password !== '' &&
-            values?.roles.length > 0 &&
-            values?.grantedIPs.length > 0
-        ) {
+        if (values.name !== '' && values.username !== '' && values.password !== '' && values?.roles.length > 0) {
             Meteor.call('users.insert', values, (error) => {
                 if (error) {
                     Swal.fire({
