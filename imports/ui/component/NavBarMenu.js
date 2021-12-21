@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
 
 import _ from 'lodash';
 
@@ -11,22 +11,24 @@ const NavBarMenu = (props) => {
     function classNames(...classes) {
         return classes.filter(Boolean).join(' ');
     }
+    function handleUrlChange(e) {
+        history.push(e.target.value);
+    }
 
     return (
-        <div className="w-full flex md:ml-0 ">
+        <div className="w-full flex md:ml-0 mt-2">
             <div className="w-full">
-                <div className="sm:hidden ">
-                    <label htmlFor="tabs" className="sr-only">
-                        Select a tab
-                    </label>
+                <div className="sm:hidden">
                     <select
                         id="tabs"
                         name="tabs"
-                        className="block w-full focus:ring-indigo-500 focus:border-indigo-500 border-gray-300 rounded-md"
-                        // defaultValue={menus.find((item) => item.current).name}
+                        onChange={handleUrlChange}
+                        className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
                     >
                         {menus.map((item) => (
-                            <option key={item._id}>{item.name}</option>
+                            <option key={item._id} value={item.url}>
+                                {item.name}
+                            </option>
                         ))}
                     </select>
                 </div>

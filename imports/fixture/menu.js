@@ -82,7 +82,7 @@ const mainModules = [
         menu: usersMenu,
         icon: CogIcon,
         current: false,
-        url: '/system/main',
+        url: '/system/category',
     },
 
     // {
