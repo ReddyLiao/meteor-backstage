@@ -46,7 +46,7 @@ const List = () => {
             let m21 = {};
             const m22 = [];
             let orQuery;
-            const fields = ['code', 'name', 'description'];
+            const fields = ['code', 'name', 'description', 'imgUrl'];
             fields.forEach(function (field) {
                 m21 = {};
                 m21[field] = { $regex: findString.trim(), $options: 'i' };
@@ -93,7 +93,7 @@ const List = () => {
                                                 onClick={handleSort}
                                                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                             >
-                                                部門編號
+                                                類別編號
                                                 <i className={sort.codeSortClass} />
                                             </th>
                                             <th
@@ -102,17 +102,22 @@ const List = () => {
                                                 onClick={handleSort}
                                                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                             >
-                                                部門名稱
+                                                類別名稱
                                                 <i className={sort.nameSortClass} />
                                             </th>
                                             <th
                                                 id="name"
                                                 title="name"
-                                                onClick={handleSort}
                                                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                             >
                                                 說明
-                                                <i className={sort.nameSortClass} />
+                                            </th>
+                                            <th
+                                                id="imgUrl"
+                                                title="imgUrl"
+                                                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                                            >
+                                                圖案
                                             </th>
                                         </tr>
                                     </thead>

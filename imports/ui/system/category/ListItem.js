@@ -46,6 +46,9 @@ const ListItem = (props) => {
             <td className="px-6 py-4 whitespace-nowrap">{item.code}</td>
             <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
             <td className="px-6 py-4 whitespace-nowrap">{item.description}</td>
+            <td className="px-6 py-4 whitespace-nowrap">
+                <img src={item.imgUrl} className="h-12 w-12" alt="image" />
+            </td>
         </tr>
     );
 };
