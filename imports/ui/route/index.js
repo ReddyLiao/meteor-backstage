@@ -9,8 +9,6 @@ import Login from '/imports/ui/component/Login';
 // import Landing from '/imports/ui/component/Landing';
 import System from '/imports/ui/system';
 import Users from '/imports/ui/users';
-import User1 from '/imports/ui/system/user';
-import User2 from '/imports/ui/users/user';
 
 import NotFound from '/imports/ui/component/NotFound';
 

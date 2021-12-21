@@ -14,3 +14,8 @@ export const [useUsersStore] = create((set) => ({
     findValues: {},
     setFindValues: (values) => set({ findValues: values }),
 }));
+
+export const [useCategoryStore] = create((set) => ({
+    findValues: {},
+    setFindValues: (values) => set({ findValues: values }),
+}));
