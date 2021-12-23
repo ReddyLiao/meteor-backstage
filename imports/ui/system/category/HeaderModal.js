@@ -106,9 +106,6 @@ const Modal = (props) => {
                                                     onChange={handleChange}
                                                     onFocus={handleFocus}
                                                 />
-                                                <span className="icon is-small is-left">
-                                                    <i className="fab fa-slack-hash"></i>
-                                                </span>
                                             </div>
                                             <div className="col-span-6 sm:col-span-3">
                                                 <label className="block text-sm font-medium text-gray-700">
@@ -125,9 +122,6 @@ const Modal = (props) => {
                                                     onChange={handleChange}
                                                     onFocus={handleFocus}
                                                 />
-                                                <span className="icon is-small is-left">
-                                                    <i className="fa fa-address-card" />
-                                                </span>
                                             </div>
                                             <div className="col-span-6 sm:col-span-4">
                                                 <label
@@ -147,9 +141,6 @@ const Modal = (props) => {
                                                     onChange={handleChange}
                                                     onFocus={handleFocus}
                                                 />
-                                                <span className="icon is-small is-left">
-                                                    <i className="fa fa-comment" />
-                                                </span>
                                             </div>
                                             <div className="col-span-6 sm:col-span-4">
                                                 <label className="block text-sm font-medium text-gray-700">

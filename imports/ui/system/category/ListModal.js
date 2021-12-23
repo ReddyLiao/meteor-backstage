@@ -103,7 +103,7 @@ const ListModal = (props) => {
                                                     類別編號 *
                                                 </label>
                                                 <input
-                                                    className="input"
+                                                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                     type="text"
                                                     name="code"
                                                     placeholder="請輸入類別編號"
@@ -118,7 +118,7 @@ const ListModal = (props) => {
                                                     類別名稱 *
                                                 </label>
                                                 <input
-                                                    className="input"
+                                                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                     type="text"
                                                     name="name"
                                                     placeholder="請輸入類別名稱"
@@ -128,14 +128,12 @@ const ListModal = (props) => {
                                                     onFocus={handleFocus}
                                                 />
                                             </div>
-
                                             <div className="col-span-6 sm:col-span-3">
                                                 <label className="block text-sm font-medium text-gray-700">
                                                     說明 *
                                                 </label>
-
                                                 <input
-                                                    className="input"
+                                                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
                                                     type="text"
                                                     name="description"
                                                     placeholder="請輸入說明"

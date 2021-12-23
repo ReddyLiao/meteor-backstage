@@ -201,9 +201,6 @@ const Modal = (props) => {
                                                     value={values.phone}
                                                     onChange={handleChange}
                                                 />
-                                                <span className="icon is-small is-left">
-                                                    <i className="fa fa-phone" />
-                                                </span>
                                             </div>
                                             <div className="col-span-6 sm:col-span-3">
                                                 <label className="block text-sm font-medium text-gray-700">
@@ -226,7 +223,7 @@ const Modal = (props) => {
                                                             ))}
                                                         </select>
                                                         <button
-                                                            className="text-blue-600 hover:text-indigo-900"
+                                                            className="mt-2 px-4 py-2 rounded-md text-sm font-medium border-0 focus:outline-none  transition text-blue-600 bg-blue-50 hover:text-blue-800 hover:bg-blue-100 "
                                                             onClick={() => handleAdd('addRole', 'roles')}
                                                         >
                                                             增加
@@ -240,7 +237,7 @@ const Modal = (props) => {
                                                                         <td>{role}</td>
                                                                         <td>
                                                                             <button
-                                                                                className="text-gray-600 hover:text-indigo-900"
+                                                                                className="px-4 py-2 rounded-md text-sm font-medium focus:outline-none  transition text-red-600 hover:bg-red-50 active:bg-red-100 "
                                                                                 onClick={() => handleRemove('roles', i)}
                                                                             >
                                                                                 刪除
@@ -275,7 +272,7 @@ const Modal = (props) => {
                                                             ))}
                                                         </select>
                                                         <button
-                                                            className="text-blue-600 hover:text-indigo-900"
+                                                            className="mt-2 px-4 py-2 rounded-md text-sm font-medium border-0 focus:outline-none  transition text-blue-600 bg-blue-50 hover:text-blue-800 hover:bg-blue-100 "
                                                             onClick={() =>
                                                                 handleAdd('addGrantedButton', 'grantedButtons')
                                                             }
@@ -298,7 +295,7 @@ const Modal = (props) => {
                                                                         </td>
                                                                         <td>
                                                                             <button
-                                                                                className="text-gray-600 hover:text-indigo-900"
+                                                                                className="px-4 py-2 rounded-md text-sm font-medium focus:outline-none  transition text-red-600 hover:bg-red-50 active:bg-red-100 "
                                                                                 onClick={() =>
                                                                                     handleRemove('grantedButtons', i)
                                                                                 }
