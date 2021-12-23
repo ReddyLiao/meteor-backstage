@@ -32,35 +32,35 @@ const usersMenu = [
     //     current: false,
     // },
 ];
-const systemMenu = [
+const settingsMenu = [
     {
-        _id: 'system010',
+        _id: 'settings010',
         sort: '010',
         name: '類別',
         menu: 'category',
         roles: ['admin'],
         icon: 'fas icon fa-users',
-        url: '/system/category',
+        url: '/settings/category',
         current: false,
     },
     // {
-    //     _id: 'system020',
+    //     _id: 'settings020',
     //     sort: '020',
     //     name: '頁面2',
     //     menu: 'users',
     //     roles: ['admin'],
     //     icon: 'fas icon fa-users',
-    //     url: '/system/user',
+    //     url: '/settings/user',
     //     current: false,
     // },
     // {
-    //     _id: 'system030',
+    //     _id: 'settings030',
     //     sort: '030',
     //     name: '頁面3',
     //     menu: 'button',
     //     roles: ['admin'],
     //     icon: 'fas icon fa-toggle-on',
-    //     url: '/system/button',
+    //     url: '/settings/button',
     //     current: false,
     // },
 ];
@@ -70,7 +70,7 @@ const mainModules = [
         _id: 'main010',
         sort: '010',
         name: '使用者',
-        menu: systemMenu,
+        menu: settingsMenu,
         icon: UsersIcon,
         current: false,
         url: '/users/user',
@@ -82,7 +82,7 @@ const mainModules = [
         menu: usersMenu,
         icon: CogIcon,
         current: false,
-        url: '/system/category',
+        url: '/settings/category',
     },
 
     // {
@@ -92,13 +92,13 @@ const mainModules = [
     //     menu: baseMenu,
     //     icon: CalendarIcon,
     //     current: false,
-    //     url: '/system/button',
+    //     url: '/settings/button',
     // },
     // {
     //     _id: 'main050',
     //     sort: '050',
     //     name: 'Documents',
-    //     menu: systemMenu,
+    //     menu: settingsMenu,
     //     icon: InboxIcon,
     //     current: false,
     //     url: '',
@@ -114,4 +114,4 @@ const mainModules = [
     // },
 ];
 
-export { systemMenu, usersMenu, mainModules };
+export { settingsMenu, usersMenu, mainModules };

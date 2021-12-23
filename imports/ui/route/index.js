@@ -7,7 +7,7 @@ import BlockUi from '/imports/ui/component/BlockUI';
 import '/imports/ui/component/BlockUI/style.css';
 import Login from '/imports/ui/component/Login';
 // import Landing from '/imports/ui/component/Landing';
-import System from '/imports/ui/system';
+import Settings from '/imports/ui/settings';
 import Users from '/imports/ui/users';
 
 import NotFound from '/imports/ui/component/NotFound';
@@ -54,7 +54,7 @@ const Index = () => (
             <Route exact path={['/', '/login']}>
                 <Login />
             </Route>
-            <ProtectedRoute path="/system/:menu" comp={System} />
+            <ProtectedRoute path="/settings/:menu" comp={Settings} />
             <ProtectedRoute path="/users/:menu" comp={Users} />
             <Route>
                 <NotFound />
