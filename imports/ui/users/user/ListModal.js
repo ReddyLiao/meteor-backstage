@@ -70,12 +70,7 @@ const ListModal = (props) => {
 
     function handleSave() {
         values.grantedMenuIDs = Session.get('grantedMenuIDs');
-        if (
-            values.username !== '' &&
-            values.name !== '' &&
-            values?.roles?.length > 0 &&
-            values?.grantedIPs?.length > 0
-        ) {
+        if (values.username !== '' && values.name !== '' && values?.roles?.length > 0) {
             Meteor.call('users.update', props.editItem._id, values, (error) => {
                 if (error) {
                     Swal.fire({

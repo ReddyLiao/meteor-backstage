@@ -19,3 +19,8 @@ export const [useCategoryStore] = create((set) => ({
     findValues: {},
     setFindValues: (values) => set({ findValues: values }),
 }));
+
+export const [useBoardingStore] = create((set) => ({
+    findValues: {},
+    setFindValues: (values) => set({ findValues: values }),
+}));

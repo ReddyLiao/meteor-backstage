@@ -87,7 +87,7 @@ Meteor.methods({
                     'profile.grantedMenuIDs': updates.grantedMenuIDs?.sort(),
                     'profile.grantedButtons': updates.grantedButtons?.sort(),
                     'profile.grantedIPs': Array.from(new Set(updates.grantedIPs))?.sort(),
-                    'emails.0.address': updates.email,
+                    'emails.address': updates.email,
                     updatedAt: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
                 },
             },

@@ -10,6 +10,10 @@ import '../../api/category/publication.js';
 import '../../api/category/collection.js';
 import '../../api/category/method.js';
 
+import '../../api/boarding/publication.js';
+import '../../api/boarding/collection.js';
+import '../../api/boarding/method.js';
+
 import '../../api/button/publication.js';
 import '../../api/button/collection.js';
 import '../../api/button/method.js';

@@ -6,7 +6,6 @@ import { useTracker } from 'meteor/react-meteor-data';
 import BlockUi from '/imports/ui/component/BlockUI';
 import '/imports/ui/component/BlockUI/style.css';
 import Login from '/imports/ui/component/Login';
-// import Landing from '/imports/ui/component/Landing';
 import Settings from '/imports/ui/settings';
 import Users from '/imports/ui/users';
 
