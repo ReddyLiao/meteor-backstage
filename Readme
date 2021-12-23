@@ -6,4 +6,11 @@ tester may not login first time
 GET /publications/<publication-name>
 http://localhost:3000/publications/api-routes
 
+POST /methods/<method-name>
+
+deploy
+https://backstage.meteorapp.com/
+
+參考資料：
+https://atmospherejs.com/simple/rest
 https://meteor-rest.readthedocs.io/en/latest/packages/rest-accounts-password/README/
