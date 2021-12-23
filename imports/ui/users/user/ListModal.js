@@ -330,7 +330,14 @@ const ListModal = (props) => {
                                     </div>
                                 </div>
                             </div>
-
+                            {values.error ? (
+                                <div className="mb-2 text-center sm:mt-5">
+                                    <p className="mx-4 mb-2 px-4 py-3 bg-yellow-50 border-none rounded-md text-lg leading-4 text-gray-500">
+                                        錯誤！
+                                        <span>{values.error}</span>
+                                    </p>
+                                </div>
+                            ) : undefined}
                             <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
                                 <button
                                     className="mx-2 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
