@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import { useTracker } from 'meteor/react-meteor-data';
-
+import { SwitchVerticalIcon } from '@heroicons/react/outline';
 import ListItem from './ListItem';
 import Pagination from '/imports/ui/component/Pagination';
 import Spinner from '/imports/ui/component/Spinner';
@@ -13,10 +13,6 @@ import ListModal from './ListModal';
 const initialSort = {
     field: 'name',
     orderBy: 'asc',
-    nameSortClass: 'icon fas fa-sort',
-    usernameSortClass: 'icon fas fa-sort',
-    emailSortClass: 'icon fas fa-sort',
-    statusSortClass: 'icon fas fa-sort',
 };
 
 const List = () => {
@@ -99,7 +95,7 @@ const List = () => {
                                                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                             >
                                                 帳號
-                                                <i className={sort.usernameSortClass} />
+                                                <SwitchVerticalIcon className="ml-2 inline-block h-5 w-5 text-gray-600" />
                                             </th>
                                             <th
                                                 id="profile.name"
@@ -109,7 +105,7 @@ const List = () => {
                                                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                             >
                                                 姓名
-                                                <i className={sort.nameSortClass} />
+                                                <SwitchVerticalIcon className="ml-2 inline-block h-5 w-5 text-gray-600" />
                                             </th>
                                             <th
                                                 id="emails[0].address"
@@ -119,7 +115,7 @@ const List = () => {
                                                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                             >
                                                 Email
-                                                <i className={sort.emailSortClass} />
+                                                <SwitchVerticalIcon className="ml-2 inline-block h-5 w-5 text-gray-600" />
                                             </th>
                                             <th
                                                 scope="col"
@@ -133,7 +129,7 @@ const List = () => {
                                             >
                                                 角色
                                             </th>
-                                            <th
+                                            {/* <th
                                                 scope="col"
                                                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                             >
@@ -144,13 +140,7 @@ const List = () => {
                                                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                             >
                                                 授權按鈕
-                                            </th>
-                                            <th
-                                                scope="col"
-                                                className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                                            >
-                                                授權IP
-                                            </th>
+                                            </th> */}
                                             <th
                                                 scope="col"
                                                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
@@ -159,7 +149,7 @@ const List = () => {
                                                 onClick={handleSort}
                                             >
                                                 上線狀況
-                                                <i className={sort.statusSortClass} />
+                                                <SwitchVerticalIcon className="ml-2 inline-block h-5 w-5 text-gray-600" />
                                             </th>
                                         </tr>
                                     </thead>

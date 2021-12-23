@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import _ from 'lodash';
 import { useTracker } from 'meteor/react-meteor-data';
-
+import { SwitchVerticalIcon } from '@heroicons/react/outline';
 import { Meteor } from 'meteor/meteor';
 import ListItem from './ListItem';
 import Pagination from '/imports/ui/component/Pagination';
@@ -12,10 +12,8 @@ import ListModal from './ListModal';
 import Category from '../../../api/category/collection';
 
 const initialSort = {
-    field: 'name',
+    field: 'code',
     orderBy: 'asc',
-    codeSortClass: 'icon fas fa-sort',
-    nameSortClass: 'icon fas fa-sort',
 };
 
 const List = () => {
@@ -94,7 +92,7 @@ const List = () => {
                                                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                             >
                                                 類別編號
-                                                <i className={sort.codeSortClass} />
+                                                <SwitchVerticalIcon className="ml-2 inline-block h-5 w-5 text-gray-600" />
                                             </th>
                                             <th
                                                 id="name"
@@ -103,7 +101,7 @@ const List = () => {
                                                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                             >
                                                 類別名稱
-                                                <i className={sort.nameSortClass} />
+                                                <SwitchVerticalIcon className="ml-2 inline-block h-5 w-5 text-gray-600" />
                                             </th>
                                             <th
                                                 id="name"
