@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import Swal from 'sweetalert2';
 import { Meteor } from 'meteor/meteor';
 import { Random } from 'meteor/random';
+import { PencilAltIcon, TrashIcon } from '@heroicons/react/outline';
 
 const ListItem = (props) => {
     const item = props.item;
@@ -10,8 +11,7 @@ const ListItem = (props) => {
     function handleUpdate() {
         item.randomID = Random.id();
         props.setEditItem(item);
-        document.getElementById('update-role-modal').classList.add('is-active');
-        document.getElementsByTagName('html')[0].classList.add('is-clipped');
+        props.setOpen(true);
     }
 
     function handleRemove() {
@@ -38,14 +38,14 @@ const ListItem = (props) => {
     }
 
     return (
-        <tr className={item._id}>
-            <td className="has-text-centered is-narrow">
-                <i className="icon fas fa-pencil" onClick={() => handleUpdate()} />
-                <i className="icon fas fa-trash" onClick={() => handleRemove()} />
+        <tr>
+            <td className="px-6 py-4 whitespace-nowrap">
+                <PencilAltIcon className="h-6 w-6 text-gray-600" onClick={() => handleUpdate()} />
+                <TrashIcon className="h-6 w-6 text-gray-600" onClick={() => handleRemove()} />
             </td>
-            <td>{item.name}</td>
-            <td>{item.cname}</td>
-            <td>{item.description}</td>
+            <td className="px-6 py-4 whitespace-nowrap">{item.name}</td>
+            <td className="px-6 py-4 whitespace-nowrap">{item.cname}</td>
+            <td className="px-6 py-4 whitespace-nowrap">{item.description}</td>
         </tr>
     );
 };

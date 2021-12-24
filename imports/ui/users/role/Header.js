@@ -1,8 +1,9 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Meteor } from 'meteor/meteor';
 import Swal from 'sweetalert2';
 import { saveAs } from 'file-saver';
 import { Random } from 'meteor/random';
+import { SearchIcon } from '@heroicons/react/solid';
 
 import HeaderModal from './HeaderModal';
 import { RoutingContext } from '/imports/ui/route';
@@ -17,6 +18,7 @@ const Header = () => {
     const { handleChange, handleFocus, values } = HandleFieldChange(INITIAL_STATE);
     const { setBlockUI } = useContext(RoutingContext);
     const { setFindValues } = useRoleStore();
+    const [open, setOpen] = useState(false);
 
     useEffect(
         () => () => {
@@ -26,8 +28,7 @@ const Header = () => {
     );
 
     function handleInsert() {
-        document.getElementById('insert-role-modal').classList.add('is-active');
-        document.getElementsByTagName('html')[0].classList.add('is-clipped');
+        setOpen(true);
     }
 
     function handleFind() {
@@ -37,59 +38,44 @@ const Header = () => {
         return true;
     }
 
-    function handleExport() {
-        setBlockUI(true);
-        Meteor.call('role.export', values, function (err, res) {
-            setBlockUI(false);
-            if (res) {
-                const data = new Blob([res.out], { type: 'octet/stream' });
-                saveAs(data, res.filename);
-            }
-            if (err) {
-                Swal.fire({
-                    icon: 'error',
-                    title: '錯誤',
-                    text: err.error,
-                }).then();
-            }
-        });
-    }
-
     return (
-        <div className="padding-left padding-right padding-top">
-            <div className="field is-grouped is-horizontal">
-                <span className="field has-addons">
-                    <span className="control">
-                        <input
-                            className="input"
-                            type="text"
-                            name="findString"
-                            id="findString"
-                            placeholder="中英文名稱/說明"
-                            value={values.findString}
-                            onChange={handleChange}
-                            onFocus={handleFocus}
-                        />
-                    </span>
-                    <span className="control">
-                        <button className="button is-primary" onClick={() => handleFind()}>
+        <div className="py-6">
+            <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex justify-start">
+                    <div className="mx-2 inline-flex items-center">
+                        <div className="relative">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <SearchIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                            </div>
+                            <input
+                                className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-md leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                                type="text"
+                                name="findString"
+                                id="findString"
+                                placeholder="帳號/姓名/EMAIL"
+                                value={values.findString}
+                                onChange={handleChange}
+                                onFocus={handleFocus}
+                            />
+                        </div>
+                        <button
+                            type="button"
+                            className="mx-2 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                            onClick={() => handleFind()}
+                        >
                             查詢
                         </button>
-                    </span>
-                </span>
-                &nbsp; &nbsp;
-                <span className="control">
-                    <button className="button is-success" onClick={() => handleExport()}>
-                        匯出
-                    </button>
-                </span>
-                <span className="control">
-                    <button className="button is-info" onClick={() => handleInsert()}>
+                    </div>
+                    <button
+                        type="button"
+                        className="mx-2 inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md text-indigo-700 bg-indigo-100 hover:bg-indigo-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                        onClick={() => handleInsert()}
+                    >
                         新增
                     </button>
-                </span>
+                </div>
             </div>
-            <HeaderModal />
+            <HeaderModal open={open} setOpen={setOpen} />
         </div>
     );
 };
