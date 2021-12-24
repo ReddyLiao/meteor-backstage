@@ -24,3 +24,8 @@ export const [useBoardingStore] = create((set) => ({
     findValues: {},
     setFindValues: (values) => set({ findValues: values }),
 }));
+
+export const [useOrderStore] = create((set) => ({
+    findValues: {},
+    setFindValues: (values) => set({ findValues: values }),
+}));

@@ -8,6 +8,7 @@ import '/imports/ui/component/BlockUI/style.css';
 import Login from '/imports/ui/component/Login';
 import Settings from '/imports/ui/settings';
 import Users from '/imports/ui/users';
+import Order from '/imports/ui/order';
 
 import NotFound from '/imports/ui/component/NotFound';
 
@@ -55,6 +56,7 @@ const Index = () => (
             </Route>
             <ProtectedRoute path="/settings/:menu" comp={Settings} />
             <ProtectedRoute path="/users/:menu" comp={Users} />
+            <ProtectedRoute path="/order/:menu" comp={Order} />
             <Route>
                 <NotFound />
             </Route>

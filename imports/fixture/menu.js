@@ -1,4 +1,4 @@
-import { CogIcon, UsersIcon } from '@heroicons/react/outline';
+import { CogIcon, UsersIcon, ClipboardCheckIcon } from '@heroicons/react/outline';
 
 const usersMenu = [
     {
@@ -65,11 +65,24 @@ const settingsMenu = [
     // },
 ];
 
+const orderMenu = [
+    {
+        _id: 'order010',
+        sort: '010',
+        name: '訂單',
+        menu: 'main',
+        roles: ['admin'],
+        icon: 'fas icon fa-toggle-on',
+        url: '/order/main',
+        current: false,
+    },
+];
+
 const mainModules = [
     {
         _id: 'main010',
         sort: '010',
-        name: '使用者',
+        name: '用戶管理',
         menu: settingsMenu,
         icon: UsersIcon,
         current: false,
@@ -78,6 +91,15 @@ const mainModules = [
     {
         _id: 'main020',
         sort: '020',
+        name: '訂單管理',
+        menu: orderMenu,
+        icon: ClipboardCheckIcon,
+        current: false,
+        url: '/order/main',
+    },
+    {
+        _id: 'main030',
+        sort: '030',
         name: '設定',
         menu: usersMenu,
         icon: CogIcon,
@@ -114,4 +136,4 @@ const mainModules = [
     // },
 ];
 
-export { settingsMenu, usersMenu, mainModules };
+export { settingsMenu, usersMenu, orderMenu, mainModules };
