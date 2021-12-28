@@ -2,7 +2,7 @@ const boarding = [
     {
         page: 1,
         content: {
-            image: 'assets/selectFood.jsonhttps://assets6.lottiefiles.com/private_files/lf30_1TcivY.json',
+            image: 'https://assets6.lottiefiles.com/private_files/lf30_1TcivY.json',
             title: '歡迎使用德川家康app',
             description: '',
         },
