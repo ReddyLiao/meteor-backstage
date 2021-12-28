@@ -4,6 +4,7 @@ import Swal from 'sweetalert2';
 import { Meteor } from 'meteor/meteor';
 import { Random } from 'meteor/random';
 import { PencilAltIcon, TrashIcon } from '@heroicons/react/outline';
+import { Player, Controls } from '@lottiefiles/react-lottie-player';
 
 const ListItem = (props) => {
     const item = props.item;
@@ -47,7 +48,16 @@ const ListItem = (props) => {
             <td className="px-6 py-4 whitespace-nowrap">{item?.content?.title}</td>
             <td className="px-6 py-4 whitespace-nowrap">{item?.content?.description}</td>
             <td className="px-6 py-4 whitespace-nowrap">
-                <img src={item?.content?.image} className="h-20 w-20 object-cover" alt="image" />
+                {/* <img src={item?.content?.image} className="h-20 w-20 object-cover"
+             alt="image" /> */}
+                <Player
+                    autoplay={false}
+                    loop={true}
+                    src={item?.content?.image}
+                    style={{ height: '100px', width: '100px' }}
+                >
+                    <Controls visible={true} buttons={['play', 'frame', 'debug']} />
+                </Player>
             </td>
         </tr>
     );

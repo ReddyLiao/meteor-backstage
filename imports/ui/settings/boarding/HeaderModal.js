@@ -142,9 +142,27 @@ const Modal = (props) => {
                                             </div>
                                             <div className="col-span-6 sm:col-span-4">
                                                 <label className="block text-sm font-medium text-gray-700">
-                                                    頁面圖案
+                                                    頁面動畫
                                                 </label>
-                                                <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
+                                                <a href="https://lottiefiles.com/featured" target="_blank">
+                                                    <button className="bg-white mx-2 py-2 px-4 shadow-sm text-sm font-medium text-gray-500">
+                                                        支援動畫來源:
+                                                        <img
+                                                            className="h-8"
+                                                            src="https://static.lottiefiles.com/images/v3/lottiefiles-logo.svg"
+                                                        />
+                                                    </button>
+                                                </a>
+                                                <input
+                                                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                    type="text"
+                                                    name="image"
+                                                    placeholder="請填入動畫網址"
+                                                    value={values.image}
+                                                    onChange={handleChange}
+                                                    onFocus={handleFocus}
+                                                />
+                                                {/* <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                                     <div className="space-y-1 text-center grid justify-items-center">
                                                         {image ? (
                                                             <img
@@ -195,7 +213,7 @@ const Modal = (props) => {
                                                             </button>
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> */}
                                             </div>
                                         </div>
                                     </div>
