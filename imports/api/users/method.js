@@ -16,7 +16,7 @@ Meteor.methods({
                 if (newMenu[2]) grantedMenus.push(newMenu[2]);
             });
 
-            const id = Accounts.createUser({
+            const id = Accounts.createUser({                
                 username: account.username,
                 email: account.email,
                 password: account.password,
