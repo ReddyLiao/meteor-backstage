@@ -22,11 +22,9 @@ const INITIAL_STATE = {
 const Modal = (props) => {
     const { handleChange, handleFocus, clearValues, resetValues, values } = HandleFieldChange(INITIAL_STATE);
     const cancelButtonRef = useRef(null);
-    const [imgUrl, setImgUrl] = useState(values.imgUrl);
 
     function handleClose() {
         clearValues();
-        setImgUrl(INITIAL_STATE.imgUrl);
         props.setOpen(false);
     }
 

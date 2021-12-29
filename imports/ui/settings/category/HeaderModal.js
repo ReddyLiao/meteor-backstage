@@ -8,18 +8,18 @@ const INITIAL_STATE = {
     code: '',
     name: '',
     description: '',
-    imgUrl: '',
+    image: '',
     error: '',
 };
 
 const Modal = (props) => {
     const { handleChange, handleFocus, clearValues, resetValues, values } = HandleFieldChange(INITIAL_STATE);
     const cancelButtonRef = useRef(null);
-    const [imgUrl, setImgUrl] = useState(values.imgUrl);
+    const [image, setImage] = useState(values.image);
 
     function handleClose() {
         clearValues();
-        setImgUrl(INITIAL_STATE.imgUrl);
+        setImage(INITIAL_STATE.image);
         props.setOpen(false);
     }
 
@@ -47,8 +47,8 @@ const Modal = (props) => {
 
         reader.onload = () => {
             let imgValue = reader.result;
-            setImgUrl(imgValue);
-            values.imgUrl = imgValue;
+            setImage(imgValue);
+            values.image = imgValue;
             // console.log(imgValue);
         };
     }
@@ -148,9 +148,9 @@ const Modal = (props) => {
                                                 </label>
                                                 <div className="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-md">
                                                     <div className="space-y-1 text-center grid justify-items-center">
-                                                        {imgUrl ? (
+                                                        {image ? (
                                                             <img
-                                                                src={imgUrl}
+                                                                src={image}
                                                                 alt="Upload-image"
                                                                 className="h-20 w-20 object-cover"
                                                             />
@@ -189,8 +189,8 @@ const Modal = (props) => {
                                                             <button
                                                                 className="mx-2 py-1 px-2 rounded-md text-sm font-medium border-0 focus:outline-none focus:ring transition text-red-600 bg-red-50 hover:text-red-800 hover:bg-red-100 active:bg-red-200 focus:ring-red-300"
                                                                 onClick={() => {
-                                                                    setImgUrl(INITIAL_STATE.imgUrl);
-                                                                    values.imgUrl = '';
+                                                                    setImage(INITIAL_STATE.image);
+                                                                    values.image = '';
                                                                 }}
                                                             >
                                                                 取消

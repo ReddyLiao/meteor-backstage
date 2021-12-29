@@ -9,14 +9,14 @@ const INITIAL_STATE = {
     code: '',
     name: '',
     description: '',
-    imgUrl: '',
+    image: '',
     error: '',
 };
 
 const ListModal = (props) => {
     const { handleChange, handleFocus, resetValues, values } = HandleFieldChange(INITIAL_STATE);
     const cancelButtonRef = useRef(null);
-    const [showImg, setShowImg] = useState(values.imgUrl);
+    const [showImg, setShowImg] = useState(values.image);
 
     useEffect(() => {
         if (props?.editItem?._id) {
@@ -26,7 +26,7 @@ const ListModal = (props) => {
 
     function handleClose() {
         resetValues(values);
-        setShowImg(INITIAL_STATE.imgUrl);
+        setShowImg(INITIAL_STATE.image);
         props.setOpen(false);
     }
 
@@ -53,7 +53,7 @@ const ListModal = (props) => {
         reader.onload = () => {
             let imgValue = reader.result;
             setShowImg(imgValue);
-            values.imgUrl = imgValue;
+            values.image = imgValue;
             // console.log(imgValue);
         };
     }
@@ -157,7 +157,7 @@ const ListModal = (props) => {
                                                             />
                                                         ) : (
                                                             <img
-                                                                src={values.imgUrl}
+                                                                src={values.image}
                                                                 alt="Upload-image"
                                                                 className="h-20 w-20 object-cover"
                                                             />
@@ -179,8 +179,8 @@ const ListModal = (props) => {
                                                             <button
                                                                 className="mx-2 py-1 px-2 rounded-md text-sm font-medium border-0 focus:outline-none focus:ring transition text-red-600 bg-red-50 hover:text-red-800 hover:bg-red-100 active:bg-red-200 focus:ring-red-300"
                                                                 onClick={() => {
-                                                                    setShowImg(INITIAL_STATE.imgUrl);
-                                                                    values.imgUrl = '';
+                                                                    setShowImg(INITIAL_STATE.image);
+                                                                    values.image = '';
                                                                 }}
                                                             >
                                                                 取消

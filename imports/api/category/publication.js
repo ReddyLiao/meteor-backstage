@@ -14,7 +14,7 @@ if (Meteor.isServer) {
             let m21 = {};
             const m22 = [];
             let orQuery;
-            const fields = ['code', 'name', 'description', 'imgUrl'];
+            const fields = ['code', 'name', 'description', 'image'];
             fields.forEach(function (field) {
                 m21 = {};
                 m21[field] = { $regex: findString.trim(), $options: 'i' };
@@ -33,7 +33,7 @@ if (Meteor.isServer) {
                     code: 1,
                     name: 1,
                     description: 1,
-                    imgUrl: 1,
+                    image: 1,
                 },
             },
         );

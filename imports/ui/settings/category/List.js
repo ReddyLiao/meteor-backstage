@@ -44,7 +44,7 @@ const List = () => {
             let m21 = {};
             const m22 = [];
             let orQuery;
-            const fields = ['code', 'name', 'description', 'imgUrl'];
+            const fields = ['code', 'name', 'description', 'image'];
             fields.forEach(function (field) {
                 m21 = {};
                 m21[field] = { $regex: findString.trim(), $options: 'i' };
@@ -111,8 +111,8 @@ const List = () => {
                                                 說明
                                             </th>
                                             <th
-                                                id="imgUrl"
-                                                title="imgUrl"
+                                                id="image"
+                                                title="image"
                                                 className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                                             >
                                                 圖案

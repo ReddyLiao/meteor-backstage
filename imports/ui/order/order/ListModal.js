@@ -23,7 +23,6 @@ const INITIAL_STATE = {
 const ListModal = (props) => {
     const { handleChange, handleFocus, resetValues, values } = HandleFieldChange(INITIAL_STATE);
     const cancelButtonRef = useRef(null);
-    const [showImg, setShowImg] = useState(values.imgUrl);
 
     useEffect(() => {
         if (props?.editItem?._id) {
@@ -33,7 +32,6 @@ const ListModal = (props) => {
 
     function handleClose() {
         resetValues(values);
-        setShowImg(INITIAL_STATE.imgUrl);
         props.setOpen(false);
     }
 
