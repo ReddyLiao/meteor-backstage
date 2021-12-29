@@ -16,7 +16,7 @@ Meteor.methods({
                 if (newMenu[2]) grantedMenus.push(newMenu[2]);
             });
 
-            const id = Accounts.createUser({                
+            const id = Accounts.createUser({
                 username: account.username,
                 email: account.email,
                 password: account.password,
@@ -25,12 +25,12 @@ Meteor.methods({
                     code: account.code,
                     acCode: account.acCode,
                     phone: account.phone,
+                    address: account.address,
                     timeZone: account.timeZone,
                     roles: account.roles.sort(),
                     grantedMenus: Array.from(new Set(grantedMenus))?.sort(),
                     grantedMenuIDs: account.grantedMenuIDs?.sort(),
-                    grantedButtons: account.grantedButtons?.sort(),
-                    grantedIPs: account.grantedIPs?.sort(),
+                    category: account.category?.sort(),
                 },
             });
             if (account.roles && account.roles !== []) {
@@ -81,12 +81,13 @@ Meteor.methods({
                     'profile.code': updates.code,
                     'profile.acCode': updates.acCode,
                     'profile.phone': updates.phone,
+                    'profile.address': updates.address,
                     'profile.timeZone': updates.timeZone,
                     'profile.roles': updates.roles?.sort(),
                     'profile.grantedMenus': Array.from(new Set(grantedMenus))?.sort(),
                     'profile.grantedMenuIDs': updates.grantedMenuIDs?.sort(),
-                    'profile.grantedButtons': updates.grantedButtons?.sort(),
-                    'profile.grantedIPs': Array.from(new Set(updates.grantedIPs))?.sort(),
+                    'profile.category': updates.category?.sort(),
+
                     'emails.address': updates.email,
                     updatedAt: format(new Date(), 'yyyy-MM-dd HH:mm:ss'),
                 },
@@ -113,5 +114,8 @@ Meteor.methods({
 
     'users.getUsersByRoles'(roles) {
         return Meteor.users.find({ 'profile.roles': { $in: [roles] } }).fetch();
+    },
+    'users.getUsersByCategory'(category) {
+        return Meteor.users.find({ 'profile.category': { $in: [category] } }).fetch();
     },
 });

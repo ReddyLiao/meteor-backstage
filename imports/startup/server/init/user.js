@@ -3,23 +3,21 @@ import { Accounts } from 'meteor/accounts-base';
 import { Roles } from 'meteor/alanning:roles';
 
 Meteor.startup(() => {
-    
     const users = [
         {
             name: 'Tester',
             username: 'tester',
             email: 'test@email.com',
             roles: ['superadmin'],
-            password:'test'
+            password: 'test',
         },
         {
             name: 'client1',
             username: 'client1',
             email: 'client1@email.test',
             roles: ['client'],
-            password:'client1'
+            password: 'client1',
         },
-        
     ];
     users.forEach(function (user) {
         if (Meteor.users.find({ username: user.username }).count() === 0) {
@@ -31,7 +29,7 @@ Meteor.startup(() => {
                     name: user.name,
                     roles: user.roles,
                     timeZone: user.timeZone,
-                    grantedButtons: ['all'],
+                    category: ['all'],
                     grantedMenus: ['all'],
                     grantedMenuIDs: ['all'],
                 },

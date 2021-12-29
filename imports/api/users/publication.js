@@ -53,7 +53,14 @@ if (Meteor.isServer) {
             let m21 = {};
             const m22 = [];
             let orQuery;
-            const fields = ['emails.address', 'profile.name', 'profile.code', 'profile.roles'];
+            const fields = [
+                'emails.address',
+                'profile.name',
+                'profile.code',
+                'profile.roles',
+                'profile.address',
+                'profile.category',
+            ];
             fields.forEach(function (field) {
                 m21 = {};
                 m21[field] = { $regex: findString.trim(), $options: 'i' };

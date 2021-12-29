@@ -10,7 +10,7 @@ import { Random } from 'meteor/random';
 import HandleFieldChange from '/imports/ui/component/HandleFieldChange';
 import MenuTree from '/imports/ui/component/MenuTree';
 import Role from '/imports/api/role/collection';
-import { buttonOptions } from '/imports/fixture/button';
+import { categoryOptions } from '/imports/fixture/category';
 
 import { Dialog, Transition } from '@headlessui/react';
 
@@ -23,10 +23,9 @@ const INITIAL_STATE = {
     phone: '',
     roles: [],
     grantedMenus: [],
-    grantedButtons: [],
-    grantedIPs: [],
+    category: [],
     addRole: '',
-    addGrantedButton: '',
+    addCategory: '',
     addGrantedIP: '',
     error: '',
 };
@@ -52,9 +51,7 @@ const ListModal = (props) => {
                 password: '',
                 phone: props?.editItem?.profile?.phone || '',
                 roles: props?.editItem?.profile?.roles,
-                grantedButtons: props?.editItem?.profile?.grantedButtons,
-                grantedIPs: props?.editItem?.profile?.grantedIPs,
-                addGrantedIPs: '',
+                category: props?.editItem?.profile?.category,
             };
 
             Session.set('grantedMenuIDs', props?.editItem?.profile?.grantedMenuIDs || '');
@@ -289,52 +286,50 @@ const ListModal = (props) => {
                                             </div>
                                             <div className="col-span-6 sm:col-span-3">
                                                 <label className="block text-sm font-medium text-gray-700">
-                                                    授權按鈕
+                                                    服務類別
                                                 </label>
 
                                                 <div>
                                                     <div>
                                                         <select
                                                             className="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
-                                                            name="addGrantedButton"
-                                                            value={values.addGrantedButton}
+                                                            name="addCategory"
+                                                            value={values.addCategory}
                                                             onChange={handleChange}
                                                         >
                                                             <option value="">請選擇</option>
                                                             <option value="all">全部</option>
-                                                            {buttonOptions.map((c) => (
-                                                                <option key={c.value} value={c.value}>
+                                                            {categoryOptions.map((c) => (
+                                                                <option key={c.value} value={c.label}>
                                                                     {c.label}
                                                                 </option>
                                                             ))}
                                                         </select>
                                                         <button
                                                             className="mt-2 px-4 py-2 rounded-md text-sm font-medium border-0 focus:outline-none  transition text-blue-600 bg-blue-50 hover:text-blue-800 hover:bg-blue-100 "
-                                                            onClick={() =>
-                                                                handleAdd('addGrantedButton', 'grantedButtons')
-                                                            }
+                                                            onClick={() => handleAdd('addCategory', 'category')}
                                                         >
                                                             增加
                                                         </button>
                                                     </div>
-                                                    {values?.grantedButtons?.length > 0 ? (
+                                                    {values?.category?.length > 0 ? (
                                                         <table className="min-w-full divide-y divide-gray-200">
-                                                            <tbody id="tbodyEditUsersGrantedButtons">
-                                                                {values.grantedButtons.map((button, i) => (
+                                                            <tbody id="tbodyEditUsersCategory">
+                                                                {values.category.map((item, i) => (
                                                                     <tr key={Random.id()}>
                                                                         <td>
-                                                                            {button === 'all'
+                                                                            {item === 'all'
                                                                                 ? 'all'
-                                                                                : _.find(buttonOptions, [
-                                                                                      'value',
-                                                                                      button,
+                                                                                : _.find(categoryOptions, [
+                                                                                      'label',
+                                                                                      item,
                                                                                   ]).label}
                                                                         </td>
                                                                         <td>
                                                                             <button
                                                                                 className="px-4 py-2 rounded-md text-sm font-medium focus:outline-none  transition text-red-600 hover:bg-red-50 active:bg-red-100 "
                                                                                 onClick={() =>
-                                                                                    handleRemove('grantedButtons', i)
+                                                                                    handleRemove('category', i)
                                                                                 }
                                                                             >
                                                                                 刪除
