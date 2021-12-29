@@ -40,7 +40,7 @@ const LoginForm = () => {
         <div className="bg-gray-100 h-screen" onSubmit={handleSubmit}>
             <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-md">
-                    <img className="mx-auto h-12 w-auto" src="" alt="Logo" />
+                    <img className="mx-auto h-40 w-auto" src="/images/logo.png" alt="Logo" />
                     <h2 className="mt-6 text-center text-2xl font-extrabold text-gray-900">Login</h2>
                 </div>
 
