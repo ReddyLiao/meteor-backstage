@@ -12,6 +12,7 @@ export default new SimpleSchema({
     profile: { type: Object },
     'profile.name': { type: String },
     'profile.phone': { type: String, optional: true },
+    'profile.address': { type: String, optional: true },
     'profile.roles': { type: Array, optional: true },
     'profile.roles.$': { type: String, optional: true },
     'profile.grantedButtons': { type: Array, optional: true },

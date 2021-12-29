@@ -16,6 +16,7 @@ const INITIAL_STATE = {
     username: '',
     name: '',
     email: '',
+    address: '',
     password: '',
     phone: '',
     roles: [],
@@ -167,6 +168,26 @@ const Modal = (props) => {
                                                     placeholder="請輸入EMail"
                                                     required
                                                     value={values.email}
+                                                    onChange={handleChange}
+                                                />
+                                                <span className="icon is-small is-left">
+                                                    <i className="fa fa-mailbox" />
+                                                </span>
+                                            </div>
+                                            <div className="col-span-6 sm:col-span-4">
+                                                <label
+                                                    htmlFor="address"
+                                                    className="block text-sm font-medium text-gray-700"
+                                                >
+                                                    居住地址
+                                                </label>
+                                                <input
+                                                    className="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md"
+                                                    type="text"
+                                                    name="address"
+                                                    placeholder="請輸入居住地址"
+                                                    required
+                                                    value={values.address}
                                                     onChange={handleChange}
                                                 />
                                                 <span className="icon is-small is-left">

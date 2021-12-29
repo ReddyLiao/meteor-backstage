@@ -56,6 +56,7 @@ const ListItem = (props) => {
                 )}
             </td>
             <td className="px-6 py-4 whitespace-nowrap">{item?.profile?.phone}</td>
+            <td className="px-6 py-4 whitespace-nowrap">{item?.profile?.address}</td>
             <td className="px-6 py-4 whitespace-nowrap">{item?.profile?.roles?.join(',')}</td>
             <td className="px-6 py-4 whitespace-nowrap">
                 {item?.status?.online ? (
