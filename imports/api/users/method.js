@@ -118,4 +118,9 @@ Meteor.methods({
     'users.getUsersByCategory'(category) {
         return Meteor.users.find({ 'profile.category': { $in: [category] } }).fetch();
     },
+    /*
+    TODO
+    findByCategoryAndGeoLocation
+    findByCategoryAndGeoLocation?Pagenation&SortByDate
+    */
 });
