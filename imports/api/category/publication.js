@@ -4,7 +4,7 @@ import Category from './collection';
 
 if (Meteor.isServer) {
     Meteor.publish('category', function () {
-        return Category.find({}, { fields: { name: 1, code: 1 } });
+        return Category.find({}, {});
     });
 
     Meteor.publish('getCategoryByFindValues', function (findValues) {
