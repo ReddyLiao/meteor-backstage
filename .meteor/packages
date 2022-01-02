@@ -34,3 +34,4 @@ check
 juliancwirko:postcss
 simple:rest
 simple:rest-accounts-password
+simple:rest-bearer-token-parser

@@ -5,6 +5,36 @@ import { check } from 'meteor/check';
 import Order from './collection';
 
 Meteor.methods({
+    'clientSubmitOrder'(val) {
+        if (!this.userId) {
+            return { state: "error", msg: "authorized failed" };
+        }        
+        //TODO check user status is busy
+        
+        /* JSON format test
+        {
+            "date": 1,
+            "time": 2,
+            "unit": 3, 
+            "masseur": "masseur", 
+            "category": "category",
+            "note":"note"
+        }
+        */
+        let newOrder = { 
+            orderNo:`${val.time|'-'|this.userId}`,
+            date: val.date,
+            time: val.time,
+            unit: val.unit, 
+            masseur: val.masseur, 
+            category: val.category,
+            note:val.note,
+            clientCode:this.userId,
+            clientName:this.userId            
+        }
+        Order.insert(newOrder);
+        return {state:"ok"};
+    },
     'order.insert'(values) {
         Order.insert(values);
     },
