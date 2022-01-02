@@ -5,7 +5,7 @@ import { check } from 'meteor/check';
 import Order from './collection';
 
 Meteor.methods({
-    'clientSubmitOrder'(val) {
+    async 'clientSubmitOrder'(val) {
         if (!this.userId) {
             return { state: "error", msg: "authorized failed" };
         }        
@@ -21,6 +21,11 @@ Meteor.methods({
             "note":"note"
         }
         */
+        
+        let client = Meteor.users.find(
+            { _id: this.userId }
+        ).fetch();
+        
         let newOrder = { 
             orderNo:`${val.time|'-'|this.userId}`,
             date: val.date,
@@ -30,8 +35,9 @@ Meteor.methods({
             category: val.category,
             note:val.note,
             clientCode:this.userId,
-            clientName:this.userId            
+            clientName:client.username            
         }
+        
         Order.insert(newOrder);
         return {state:"ok"};
     },
