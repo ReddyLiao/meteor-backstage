@@ -21,6 +21,7 @@ Meteor.methods({
             "note":"note"
         }
         */
+       
         
         let client = Meteor.users.find(
             { _id: this.userId }
