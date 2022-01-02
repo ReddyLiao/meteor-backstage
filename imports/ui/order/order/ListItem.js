@@ -46,8 +46,8 @@ const ListItem = (props) => {
             <td className="px-6 py-4 whitespace-nowrap">{item.orderNo}</td>
             <td className="px-6 py-4 whitespace-nowrap">{item.clientCode}</td>
             <td className="px-6 py-4 whitespace-nowrap">{item.clientName}</td>
-            <td className="px-6 py-4 whitespace-nowrap">{item.date}</td>
-            <td className="px-6 py-4 whitespace-nowrap">{item.time}</td>
+            <td className="px-6 py-4 whitespace-nowrap">{new Date(item.date/1000).toLocaleDateString()}</td>
+            <td className="px-6 py-4 whitespace-nowrap">{parseInt(item.time/60)+":"+item.time%60}</td>
             <td className="px-6 py-4 whitespace-nowrap">{item.unit}</td>
             <td className="px-6 py-4 whitespace-nowrap">{item.category}</td>
             <td className="px-6 py-4 whitespace-nowrap">{item.masseur}</td>
