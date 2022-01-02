@@ -151,7 +151,7 @@ const ListModal = (props) => {
                                                     name="time"
                                                     placeholder="請輸入時間"
                                                     required
-                                                    value={values.time}
+                                                    value={`${values.time/60|'-'|values.time%60}`}
                                                     onChange={handleChange}
                                                     onFocus={handleFocus}
                                                 />
