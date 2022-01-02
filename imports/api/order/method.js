@@ -24,10 +24,10 @@ Meteor.methods({
         
         let client = Meteor.users.find(
             { _id: this.userId }
-        ).fetch();
+        ).fetch();        
         
         let newOrder = { 
-            orderNo:`${val.time|'-'|this.userId}`,
+            orderNo:val.date+"-"+this.userId,
             date: val.date,
             time: val.time,
             unit: val.unit, 
@@ -35,11 +35,11 @@ Meteor.methods({
             category: val.category,
             note:val.note,
             clientCode:this.userId,
-            clientName:client.username            
+            clientName:client[0].username            
         }
         
         Order.insert(newOrder);
-        return {state:"ok"};
+        return {state:"ok"};    
     },
     'order.insert'(values) {
         Order.insert(values);
