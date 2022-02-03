@@ -37,7 +37,7 @@ const LoginForm = () => {
     };
 
     return (
-        <div className="bg-gray-100 h-screen" onSubmit={handleSubmit}>
+        <div className="bg-gray-100 h-full" onSubmit={handleSubmit}>
             <div className="min-h-full flex flex-col justify-center py-12 sm:px-6 lg:px-8">
                 <div className="sm:mx-auto sm:w-full sm:max-w-md">
                     <img className="mx-auto h-40 w-auto" src="/images/logo.png" alt="Logo" />

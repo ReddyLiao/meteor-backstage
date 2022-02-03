@@ -18,6 +18,13 @@ Meteor.startup(() => {
             roles: ['client'],
             password: 'client1',
         },
+        {
+            name: 'Guest',
+            username: 'guest',
+            email: '',
+            roles: ['client'],
+            password: 'guest123',
+        },
     ];
     users.forEach(function (user) {
         if (Meteor.users.find({ username: user.username }).count() === 0) {
