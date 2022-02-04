@@ -4,7 +4,7 @@
 
 ## About
 
-這是一個以按摩服務為主題搭建的的後台系統，用 meteor 及 tailwind 框架，能同時處理前後端，
+這是一個以按摩服務為主題搭建的的後台系統，使用 meteor 框架，及運用React與tailwind CSS，能同時處理前後端，
 並提供 API 讓他方做資料存取，此專案仍在進行中...
 ![This is an image](public/images/readme_pic1.jpg)
 ![This is an image](public/images/readme_pic2.jpg)
